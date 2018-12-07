@@ -1,0 +1,119 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01f0gUuzZXmeZdERQEmlIiCyoWJjtRQTX",
+    "name": "ParentNoneAtomic",
+    "title": "ParentNoneAtomic",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "ParentNoneAtomic",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01f0gvzdiNfE7xMRwW5j0fw7mPgqQU2wh",
+        "name": "ATOMICRUSLANORIGINAL1",
+        "title": "ATOMICRUSLANORIGINAL1",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "display_name": "ATOMICRUSLANORIGINAL1",
+          "target": {
+            "no_target": true
+          },
+          "workflow_id": "01FYXZzMQxPzEoeEbSr8k2tIuNTjcySGN"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "variables": {
+    "variable_01FYXeJJ8c9olfwtmgknpcJvHFBMLIyMP": {
+      "unique_name": "variable_01FYXeJJ8c9olfwtmgknpcJvHFBMLIyMP",
+      "schema_id": "tabletype_01KwWnAVRoqjP8HKIG5jyQ9xtTDwQh6YU",
+      "properties": {
+        "value": [
+          {
+            "column_data": {
+              "Num": 1
+            }
+          },
+          {
+            "column_data": {
+              "Num": 2
+            }
+          },
+          {
+            "column_data": {
+              "Num": 3
+            }
+          }
+        ],
+        "scope": "global",
+        "name": "RUSLANTABLE",
+        "type": "datatype.table"
+      },
+      "object_type": "variable"
+    },
+    "variable_01KuO3nmNGszQF0CTmMbgxAwbX6auXAQi": {
+      "unique_name": "variable_01KuO3nmNGszQF0CTmMbgxAwbX6auXAQi",
+      "properties": {
+        "scope": "global",
+        "name": "SecureString-Ruslan",
+        "type": "datatype.secure_string"
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01KwWnAVRoqjP8HKIG5jyQ9xtTDwQh6YU": {
+      "unique_name": "tabletype_01KwWnAVRoqjP8HKIG5jyQ9xtTDwQh6YU",
+      "data_type": "datatype.tabletype",
+      "display_name": "RG global table",
+      "max_rows": 256,
+      "max_columns": 256,
+      "max_column_size": 1024,
+      "max_table_size": 26000,
+      "columns": [
+        {
+          "maximum": 10,
+          "minimum": 1,
+          "name": "Num",
+          "title": "Num",
+          "type": "integer"
+        },
+        {
+          "maxLength": 10,
+          "name": "String",
+          "title": "String",
+          "type": "string"
+        },
+        {
+          "maxLength": 1,
+          "maximum": 1,
+          "minimum": 1,
+          "name": "date",
+          "title": "date",
+          "type": "date"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
