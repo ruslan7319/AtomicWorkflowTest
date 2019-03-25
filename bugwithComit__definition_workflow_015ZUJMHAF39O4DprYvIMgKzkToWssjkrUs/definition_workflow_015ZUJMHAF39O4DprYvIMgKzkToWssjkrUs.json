@@ -1,0 +1,45 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_015ZUJMHAF39O4DprYvIMgKzkToWssjkrUs",
+    "name": "NEXTG-11566  bug workflow",
+    "title": "NEXTG-11566  bug workflow",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "NEXTG-11566  bug workflow",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false,
+        "target_type": "015DULIDS3Z3A4bl6s5vHMS92ZUzYKqlveJ"
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_015ZUMQ3LKNXR3I5A3TnT6rvnqrnZNGPMYf",
+        "name": "Sleep",
+        "title": "Sleep",
+        "type": "core.sleep",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Sleep",
+          "sleep_interval": 2
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
