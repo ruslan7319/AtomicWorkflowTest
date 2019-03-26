@@ -12,6 +12,7 @@
         "is_atomic": true
       },
       "delete_workflow_instance": false,
+      "description": "dadadd",
       "display_name": "RUSLAN-COMMIT-WORKFLOW 1",
       "favorite": false,
       "target": {
