@@ -1,0 +1,261 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_015XC7FRIPN0F61gR0vYmIKxIWnLbkrNavG",
+    "name": "TestTG",
+    "title": "TestTG",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "TestTG",
+      "favorite": false,
+      "target": {
+        "target_type": "015DULIDS3Z3A4bl6s5vHMS92ZUzYKqlveJ",
+        "target_id": "0160J1847JP3T4Aow22wH2B1FpZTcdg0lBJ",
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_015XC7CSVJJ4566OJWzW1SclHzx22rmUIfp",
+          "run_on_all_targets": false,
+          "selected_target_types": [
+            "meraki.endpoint",
+            "terminal.endpoint",
+            "web-service.endpoint"
+          ],
+          "use_criteria": {
+            "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+            "conditions": [
+              {
+                "operator": "eq",
+                "left_operand": "$targetgroup.web-service endpoint.input.display_name$",
+                "right_operand": "ND_DNAC-tar"
+              },
+              {
+                "operator": "eq",
+                "left_operand": "$targetgroup.terminal endpoint.input.display_name$",
+                "right_operand": "termtar"
+              },
+              {
+                "operator": "eq",
+                "left_operand": "$targetgroup.meraki endpoint.input.display_name$",
+                "right_operand": "ryMeraki"
+              }
+            ]
+          }
+        }
+      },
+      "timeout": 3600
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_015XC8Q7Y6AZM1RiTA7te2X25TmV7WOohPB",
+        "name": "Execute Terminal Command(s)",
+        "title": "Execute Terminal Command(s)",
+        "type": "terminal.command",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "command_timeout": 60,
+          "commands": "df -dh",
+          "continue_on_failure": false,
+          "display_name": "Execute Terminal Command(s)",
+          "merge_commands": false,
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "special_character": 0,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target_group": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_015XC8YX4D5IQ1wELsTDSotAwvCX1rt7cKv",
+        "name": "Get Organizations",
+        "title": "Get Organizations",
+        "type": "meraki.get_organizations",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Get Organizations",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target_group": true
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0162FOMXGX1RO4liOGyEQviyAM7kP0QQ2FH",
+        "name": "Get Access Token",
+        "title": "Get Access Token",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "atomic": {
+            "atomic_group": "Cisco DNA Center",
+            "is_atomic": true
+          },
+          "continue_on_failure": false,
+          "delete_workflow_instance": false,
+          "display_name": "Get Access Token",
+          "favorite": false,
+          "input": {},
+          "target": {
+            "execute_on_target_group": false,
+            "execute_on_this_target_group": false,
+            "execute_on_workflow_target": false,
+            "no_target": false,
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "specify_on_workflow_start": true,
+            "target_type": "web-service endpoint",
+            "use_workflow_target_group": false
+          },
+          "timeout": 3600,
+          "workflow_id": "definition_workflow_0152CDDIM1G7G72w1hEDpy9uFxIaCdAGcEi"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_015EL01R0XD1Q30tIueLnySpcvpNwt9Z21d": {
+      "unique_name": "definition_target_015EL01R0XD1Q30tIueLnySpcvpNwt9Z21d",
+      "name": "ry Meraki",
+      "title": "ry Meraki",
+      "type": "meraki.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_015EKZIIHT1LJ4femTmmQ1ZQsbUwd6ZFczz",
+        "display_name": "ry Meraki",
+        "host": "n180.meraki.com",
+        "protocol": "https"
+      }
+    },
+    "definition_target_015OQC4X6WO7I1xpd2g12ldT4PRYiHx3O9I": {
+      "unique_name": "definition_target_015OQC4X6WO7I1xpd2g12ldT4PRYiHx3O9I",
+      "name": "ND_DNAC-tar",
+      "title": "ND_DNAC-tar",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_015OQBU9J0IFJ4ojliMAD5v8tr0F3WEJzlg",
+        "disable_certificate_validation": true,
+        "display_name": "ND_DNAC-tar",
+        "host": "10.122.6.51",
+        "no_runtime_user": false,
+        "protocol": "https"
+      }
+    },
+    "definition_target_015XC6LDFU8C22tLx7bWxuKsudyxdJdhFb2": {
+      "unique_name": "definition_target_015XC6LDFU8C22tLx7bWxuKsudyxdJdhFb2",
+      "name": "termtar",
+      "title": "termtar",
+      "type": "terminal.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_015L8K9OMT2HC6lwVyTeDQHei21naWw8iSZ",
+        "display_name": "termtar",
+        "host": "10.88.38.110",
+        "port": 22,
+        "protocol": "ssh"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_015EKZIIHT1LJ4femTmmQ1ZQsbUwd6ZFczz": {
+      "unique_name": "definition_runtime_user_015EKZIIHT1LJ4femTmmQ1ZQsbUwd6ZFczz",
+      "name": "ry Meraki",
+      "title": "ry Meraki",
+      "type": "runtime_user.meraki_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "ry Meraki"
+      }
+    },
+    "definition_runtime_user_015L8K9OMT2HC6lwVyTeDQHei21naWw8iSZ": {
+      "unique_name": "definition_runtime_user_015L8K9OMT2HC6lwVyTeDQHei21naWw8iSZ",
+      "name": "linuser",
+      "title": "linuser",
+      "type": "runtime_user.terminal_password_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "linuser"
+      }
+    },
+    "definition_runtime_user_015OQBU9J0IFJ4ojliMAD5v8tr0F3WEJzlg": {
+      "unique_name": "definition_runtime_user_015OQBU9J0IFJ4ojliMAD5v8tr0F3WEJzlg",
+      "name": "ND-DNAC-user",
+      "title": "ND-DNAC-user",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "ND-DNAC-user"
+      }
+    }
+  },
+  "target_groups": {
+    "target_group_015XC7CSVJJ4566OJWzW1SclHzx22rmUIfp": {
+      "unique_name": "target_group_015XC7CSVJJ4566OJWzW1SclHzx22rmUIfp",
+      "name": "TG_1",
+      "title": "TG_1",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": false,
+          "selected_target_ids": [
+            "definition_target_015OQC4X6WO7I1xpd2g12ldT4PRYiHx3O9I"
+          ]
+        },
+        {
+          "data_target_type": "terminal.endpoint",
+          "view_target_type": "terminal.endpoint",
+          "include_all_targets": false,
+          "selected_target_ids": [
+            "definition_target_015XC6LDFU8C22tLx7bWxuKsudyxdJdhFb2"
+          ]
+        },
+        {
+          "data_target_type": "meraki.endpoint",
+          "view_target_type": "meraki.endpoint",
+          "include_all_targets": false,
+          "selected_target_ids": [
+            "definition_target_015EL01R0XD1Q30tIueLnySpcvpNwt9Z21d"
+          ]
+        }
+      ],
+      "object_type": "target_group"
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_0152CDDIM1G7G72w1hEDpy9uFxIaCdAGcEi"
+  ]
+}
