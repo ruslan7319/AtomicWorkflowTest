@@ -9,12 +9,34 @@
       {
         "schema_id": "datatype.string",
         "properties": {
+          "value": "true",
+          "scope": "local",
+          "name": "respons-true",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0161J8IUV2PQI4BwviQMH0L4D2SZTqugi6K",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
           "value": "false",
           "scope": "local",
           "name": "responds-false",
           "type": "datatype.string"
         },
         "unique_name": "variable_workflow_0161J8IUV36422nXYTKpXXwGM85BMXwZBOf",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "Yes",
+          "scope": "input",
+          "name": "TargetGroup_ChildWorkflow",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_016CK8TE0U0WA4s5oDTCoKtcgqF8pigOYqK",
         "object_type": "variable_workflow"
       },
       {
@@ -49,17 +71,6 @@
         },
         "unique_name": "variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo",
         "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "true",
-          "scope": "local",
-          "name": "respons-true",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_0161J8IUV2PQI4BwviQMH0L4D2SZTqugi6K",
-        "object_type": "variable_workflow"
       }
     ],
     "properties": {
@@ -79,279 +90,6 @@
       "timeout": 3600
     },
     "object_type": "definition_workflow",
-    "actions": [
-      {
-        "unique_name": "definition_activity_0161J8JCSX5P272wOgZMOlpz32qSpVwLwOQ",
-        "name": "Generic CCS API Request",
-        "title": "Generic CCS API Request - get runtime_user_id's",
-        "type": "ccs.api_request",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "api_call_method": "GET",
-          "continue_on_failure": false,
-          "display_name": "Generic CCS API Request - get runtime_user_id's",
-          "relative_url": "/be-console/api/v1/schemas?base_type=runtime_user\u0026schema_type=view",
-          "runtime_user": {
-            "override_target_runtime_user": false,
-            "target_default": true
-          },
-          "target": {
-            "override_workflow_target": true,
-            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
-          }
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_0161J8JQ7ZV9N36HhReK968ejooDgvQmeB1",
-        "name": "JSONPath Query",
-        "title": "JSONPath Query - Get Google runtime user ID",
-        "type": "corejava.jsonpathquery",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "continue_on_failure": false,
-          "display_name": "JSONPath Query - Get Google runtime user ID",
-          "input_json": "$activity.definition_activity_0161J8JCSX5P272wOgZMOlpz32qSpVwLwOQ.output.response_body$",
-          "jsonpath_queries": [
-            {
-              "jsonpath_query": "$..[?(@.type == 'runtime_user.gcp_credentials')].id",
-              "jsonpath_query_name": "google_runtime_user_id",
-              "jsonpath_query_type": "string",
-              "zdate_type_format": ""
-            }
-          ]
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_0161J8K7HLQFG5Zv6SKs9GZASL8ZUScyqfM",
-        "name": "Generic CCS API Request",
-        "title": "Generic CCS API Request - get target shema ids",
-        "type": "ccs.api_request",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "api_call_method": "GET",
-          "continue_on_failure": false,
-          "display_name": "Generic CCS API Request - get target shema ids",
-          "relative_url": "/be-console/api/v1/schemas?base_type=target\u0026schema_type=view",
-          "runtime_user": {
-            "override_target_runtime_user": false,
-            "target_default": true
-          },
-          "target": {
-            "override_workflow_target": true,
-            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
-          }
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_0161J8KMY6M926U4ybpexABkH88eGwXWtv8",
-        "name": "JSONPath Query",
-        "title": "JSONPath Query - Get Google Adapter ID",
-        "type": "corejava.jsonpathquery",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "continue_on_failure": false,
-          "display_name": "JSONPath Query - Get Google Adapter ID",
-          "input_json": "$activity.definition_activity_0161J8K7HLQFG5Zv6SKs9GZASL8ZUScyqfM.output.response_body$",
-          "jsonpath_queries": [
-            {
-              "jsonpath_query": "$..[?(@.type == 'gcp.endpoint')].id",
-              "jsonpath_query_name": "google_adapter_id",
-              "jsonpath_query_type": "string",
-              "zdate_type_format": ""
-            }
-          ]
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_0161J8L3UM79A3i0H0zJumqAMQkG46ghsb4",
-        "name": "Generic CCS API Request",
-        "title": "Generic CCS API Request create GCP credential",
-        "type": "ccs.api_request",
-        "base_type": "activity",
-        "properties": {
-          "action_timeout": 180,
-          "api_body": "{\n  \"schema_id\": \"$activity.definition_activity_0161J8JQ7ZV9N36HhReK968ejooDgvQmeB1.output.jsonpath_queries.google_runtime_user_id$\",\n  \"name\": \"$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.input.variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo$\",\n  \"title\": \"$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.input.variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo$\",\n  \"properties\": {\n    \"display_name\": \"$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.input.variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo$\",\n    \"key\": \"{\\n  \\\"type\\\": \\\"service_account\\\",\\n  \\\"project_id\\\": \\\"longhorn-186314\\\",\\n  \\\"private_key_id\\\": \\\"a521bfd3d051240beeeb429ab6b728a634b5af2b\\\",\\n  \\\"private_key\\\": \\\"-----BEGIN PRIVATE KEY-----\\\\nMIIEuwIBADANBgkqhkiG9w0BAQEFAASCBKUwggShAgEAAoIBAQC6P1s3rbZq43gV\\\\nYuloZYkwT3biX1FtE/Ebgf4sIRXYZiO0vTv7lIx0lJRXIJLn4OtXmJ8M4UzwPNtW\\\\n9+Z+sHO80IrWhBDrz9VDyNZcMZBzM93ctdXsogBjIrU52Vfb+hLSh0afKUZVJwQn\\\\nq2D7IhyozBweI+qd3IA62D6lzpMrdKNtXweARoN/hg9RMDZYQQw3VcgjO2Mxn5wp\\\\nMbFmuDZTXh8Vv3yy3nq+W+Vn3fAwWZFe0Eb9g1LybukSGLerC6nE3iBVhYnWnKkz\\\\nf/4IT515VGpMgHWzA5495ir3LyIqjISJQCFb/WR94Au4Bt74CfTSmnv3zXT+yATf\\\\np3+JdbeBAgMBAAECgf8hZ4a6v70BKpNzm0MnnhizCz32nObOCSQKNM8Ff1JPRgTK\\\\n+LiZogMYvxJ7WInPzCtWWucz8d0+7k8uxOXdfvJ/glq+WgluDaoRgti9jj8+8uEG\\\\nsZiqlVUD2BzCAo7B02XO1VNwDCpOEUZu7KEWdTZ1zxvEd2BtY+qxckUPo0q7Qs+1\\\\nriL8DQAHAwIACOJfw71+vXhFGWtUCKyTiLq0PaMqQMt0q7GM+f5ppq1G+/uBE0A8\\\\nfd2W2oy/brz63rzTEiVKDDITET8hj9Esi2jF2uhr1QYMoON+H0zxVbGR95eEGqTr\\\\nFfpgojWwIa9Ogwyp72gxiVQ2Q7Erx7NmV7TUy10CgYEA3nbe4vWBegGmSwC6cPMV\\\\n3VyXxyX52Qw52ak8yaCHAlWDuOa+ZpHJ/MLOuF8DTDKv6EY8BuB1AoGEYLFN3cUq\\\\nKriAZClXz8uP8HUsmbKkGMiqYAwXgzNnxGESkIx2YmHhuyde5IBhKCT/18u/VR+S\\\\nZbs3LN3OXkbHJIc11ogeKSsCgYEA1lLW/Dxcs1FaYRROMqy1PP45ml6qCNDAN60b\\\\n8HtsxzNeYJ7qq7rFHBznEr8EIsqK9fX1r73BvMt172q7hq46TMtOl6Klh+wT5jm4\\\\nShUU87lZdDOuFO+gf3NXJ5jYSE1/P0ifZ+TpeK1BkMhRTGDdwKCWN7/PZvss9K2X\\\\n3537tAMCgYEAnIv90Kx+zoJ2qPT8PhtxWXKdA/E/XnNyCi9DrYcfOo8+wFDvz3Hs\\\\nN8hGfAuwYGCS1NsHxrcQ4BCQPRLH/rWON\\\\nL3c658EQh+3TLjIB+hj/WTIMAqSSStV\\\\nbCX7UGjnrde/Z1oPNrD4ra1LtGmWXKp49MnHy/TSEhmwbY4QXsUupD0CgYBeCVzg\\\\nsU9vMku4eqNQ4qxmxZjanZx3X7hm9WJj4pO411YaiL+od7tSeW/9rqgO59WO08tn\\\\nv5eI0bC+SpNbJYjY9v9V0vxUJgYZJswwXQ2jXnjcXmyMLRO7uAzOh+al2rLxPlkK\\\\nycqSs1ooP2xEWeASS6N9dIB4y85O0PfpGrU8pwKBgBYY2gaTnXvnwqXtAIwG7ccb\\\\nW4khQUWsVyNtl+NzR4FP6v0yiC6FO5xRJ67dyL+5g01SB8tsfH9K3u8rRFdVpOWL\\\\n30/B4ZkqwWMjlp5cq6xAduw3+DiTrN/GLQgUzHMmjr9dvGkgyjT8tsBl1dCNPKLR\\\\nb4sQzX1sA5+LOgMbtDWD\\\\n-----END PRIVATE KEY-----\\\\n\\\",\\n  \\\"client_email\\\": \\\"longhorn-qa@longhorn-186314.iam.gserviceaccount.com\\\",\\n  \\\"client_id\\\": \\\"106910988228686833980\\\",\\n  \\\"auth_uri\\\": \\\"https://accounts.google.com/o/oauth2/auth\\\",\\n  \\\"token_uri\\\": \\\"https://oauth2.googleapis.com/token\\\",\\n  \\\"auth_provider_x509_cert_url\\\": \\\"https://www.googleapis.com/oauth2/v1/certs\\\",\\n  \\\"client_x509_cert_url\\\": \\\"https://www.googleapis.com/robot/v1/metadata/x509/longhorn-qa%40longhorn-186314.iam.gserviceaccount.com\\\"\\n}\\n\"\n  }\n}",
-          "api_call_method": "POST",
-          "continue_on_failure": false,
-          "display_name": "Generic CCS API Request create GCP credential",
-          "relative_url": "/be-console/api/v1/runtime_users",
-          "runtime_user": {
-            "override_target_runtime_user": false,
-            "target_default": true
-          },
-          "target": {
-            "override_workflow_target": true,
-            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
-          }
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_0161J8LGUTCLL67lGH6jnPRYkfILkd3ylGF",
-        "name": "Condition Block",
-        "title": "Condition Block",
-        "type": "logic.if_else",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "Condition Block"
-        },
-        "object_type": "definition_activity",
-        "blocks": [
-          {
-            "unique_name": "definition_activity_0161J8LQV0QOB1Duh5qlVNCUJIQfOZItaIv",
-            "name": "Condition Branch",
-            "title": "Condition Branch  Success=true",
-            "type": "logic.condition_block",
-            "base_type": "activity",
-            "properties": {
-              "condition": {
-                "left_operand": "$activity.definition_activity_0161J8L3UM79A3i0H0zJumqAMQkG46ghsb4.output.succeeded$",
-                "operator": "eq",
-                "right_operand": "$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.local.variable_workflow_0161J8IUV3D6R2HfC7mvzah2gQy1JyDcRDs$"
-              },
-              "continue_on_failure": false,
-              "display_name": "Condition Branch  Success=true"
-            },
-            "object_type": "definition_activity",
-            "actions": [
-              {
-                "unique_name": "definition_activity_016BNG6E1UY702sWbj0EX5GMtrJca7Ybig4",
-                "name": "JSONPath Query",
-                "title": "JsonPath get creadetial id",
-                "type": "corejava.jsonpathquery",
-                "base_type": "activity",
-                "properties": {
-                  "action_timeout": 180,
-                  "continue_on_failure": false,
-                  "display_name": "JsonPath get creadetial id",
-                  "input_json": "$activity.definition_activity_0161J8L3UM79A3i0H0zJumqAMQkG46ghsb4.output.response_body$",
-                  "jsonpath_queries": [
-                    {
-                      "jsonpath_query": "$..id",
-                      "jsonpath_query_name": "gcp_credetial-id",
-                      "jsonpath_query_type": "string",
-                      "zdate_type_format": ""
-                    }
-                  ]
-                },
-                "object_type": "definition_activity"
-              },
-              {
-                "unique_name": "definition_activity_0161J8M8BNAL946RwkM7VCuyBTlwhIwCCoF",
-                "name": "Generic CCS API Request",
-                "title": "Generic CCS API Request - Create GCP Target",
-                "type": "ccs.api_request",
-                "base_type": "activity",
-                "properties": {
-                  "action_timeout": 180,
-                  "api_body": "{\n  \"name\": \"$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.input.variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo$\",\n  \"title\": \"$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.input.variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo$\",\n  \"properties\": {\n    \"display_name\": \"$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.input.variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo$\",\n    \"description\": \"tesrt\",\n    \"default_runtime_user_id\": \"$activity.definition_activity_016BNG6E1UY702sWbj0EX5GMtrJca7Ybig4.output.jsonpath_queries.gcp_credetial-id$\",\n    \"protocol\": \"https\",\n    \"host\": \"www.googleapis.com\",\n    \"scope\": \"auth/cloud-platform\"\n  },\n  \"schema_id\": \"$activity.definition_activity_0161J8KMY6M926U4ybpexABkH88eGwXWtv8.output.jsonpath_queries.google_adapter_id$\"\n}",
-                  "api_call_method": "POST",
-                  "continue_on_failure": false,
-                  "display_name": "Generic CCS API Request - Create GCP Target",
-                  "relative_url": "/be-console/api/v1/targets",
-                  "runtime_user": {
-                    "override_target_runtime_user": false,
-                    "target_default": true
-                  },
-                  "target": {
-                    "override_workflow_target": true,
-                    "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
-                  }
-                },
-                "object_type": "definition_activity"
-              },
-              {
-                "unique_name": "definition_activity_016BUETZWG3HM5btQ0OQ7IR7GYvhDtPlC2E",
-                "name": "Condition Block",
-                "title": "Condition Block",
-                "type": "logic.if_else",
-                "base_type": "activity",
-                "properties": {
-                  "continue_on_failure": false,
-                  "display_name": "Condition Block"
-                },
-                "object_type": "definition_activity",
-                "blocks": [
-                  {
-                    "unique_name": "definition_activity_016BUEU3STQAM3oebt6yrkpwLWgpjRP8Clb",
-                    "name": "Condition Branch",
-                    "title": "Condition Branch",
-                    "type": "logic.condition_block",
-                    "base_type": "activity",
-                    "properties": {
-                      "condition": {
-                        "left_operand": "",
-                        "operator": "eq",
-                        "right_operand": ""
-                      },
-                      "display_name": "Condition Branch"
-                    },
-                    "object_type": "definition_activity"
-                  },
-                  {
-                    "unique_name": "definition_activity_016BUEU5JSKJD073EBX6axejBwAUoVShc3V",
-                    "name": "Condition Branch",
-                    "title": "Condition Branch",
-                    "type": "logic.condition_block",
-                    "base_type": "activity",
-                    "properties": {
-                      "condition": {
-                        "left_operand": "",
-                        "operator": "eq",
-                        "right_operand": ""
-                      },
-                      "display_name": "Condition Branch"
-                    },
-                    "object_type": "definition_activity"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "unique_name": "definition_activity_0161J8MM5M0IY6WGGneOHyL9Q3Xyn5VtH6c",
-            "name": "Condition Branch",
-            "title": "Condition Branch",
-            "type": "logic.condition_block",
-            "base_type": "activity",
-            "properties": {
-              "condition": {
-                "left_operand": "$activity.definition_activity_0161J8L3UM79A3i0H0zJumqAMQkG46ghsb4.output.succeeded$",
-                "operator": "eq",
-                "right_operand": "$workflow.definition_workflow_0161J8HT8C8FK0bPGuCFmz6w7SzEs1OOnwx.local.variable_workflow_0161J8IUV3JNS5DwDUSwA0Wvdqasa5auZt8$"
-              },
-              "continue_on_failure": false,
-              "display_name": "Condition Branch"
-            },
-            "object_type": "definition_activity",
-            "actions": [
-              {
-                "unique_name": "definition_activity_0161J8MV9Z9B64gLIxc6C56kTQQU9S4lufG",
-                "name": "Failed",
-                "title": "Completed",
-                "type": "logic.completed",
-                "base_type": "activity",
-                "properties": {
-                  "completion_type": "failed-completed",
-                  "display_name": "Failed",
-                  "result_message": "GCP credential creation fail "
-                },
-                "object_type": "definition_activity"
-              }
-            ]
-          }
-        ]
-      }
-    ],
     "categories": [
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
