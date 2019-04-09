@@ -9,6 +9,17 @@
       {
         "schema_id": "datatype.string",
         "properties": {
+          "value": "RuslanGoogleAccountName",
+          "scope": "input",
+          "name": "GoogleAccountName",
+          "type": "datatype.string"
+        },
+        "unique_name": "variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
           "value": "true",
           "scope": "local",
           "name": "respons-true",
@@ -59,17 +70,6 @@
           "type": "datatype.boolean"
         },
         "unique_name": "variable_workflow_0161J8IUV3JNS5DwDUSwA0Wvdqasa5auZt8",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "RuslanGoogleAccountName",
-          "scope": "input",
-          "name": "GoogleAccountName",
-          "type": "datatype.string"
-        },
-        "unique_name": "variable_workflow_0161J8IUV3PU32fdQ2GHcuIpo9P6Hike1jo",
         "object_type": "variable_workflow"
       }
     ],
