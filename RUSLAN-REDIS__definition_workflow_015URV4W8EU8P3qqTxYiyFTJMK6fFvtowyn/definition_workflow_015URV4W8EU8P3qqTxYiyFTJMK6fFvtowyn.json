@@ -7,6 +7,50 @@
     "base_type": "workflow",
     "variables": [
       {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "static",
+          "name": "SecureString",
+          "type": "datatype.secure_string"
+        },
+        "unique_name": "variable_workflow_015WDUKX77XS055AcxbUDG469gVXh0h4WV1",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "LocalBoolean",
+          "type": "datatype.boolean"
+        },
+        "unique_name": "variable_workflow_015WDUW0T0M8R2rirZpHSRzIsMaTBY0jEEG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.date",
+        "properties": {
+          "value": "2018-10-30T15:04:44.244401871Z",
+          "scope": "local",
+          "name": "Date",
+          "type": "datatype.date"
+        },
+        "unique_name": "variable_workflow_015WDVJFT2L244UG9efA9d4T5FLPcc9Sj3V",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "value": 1,
+          "scope": "local",
+          "name": "LocalInteger",
+          "type": "datatype.integer"
+        },
+        "unique_name": "variable_workflow_015US2RZR80FE1sBAZe3ayrIINrBl7OahcJ",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "datatype.integer",
         "properties": {
           "value": 200,
@@ -62,49 +106,6 @@
         },
         "unique_name": "variable_workflow_015VMJ6X8J42F6D1VDmOz627ZYmVsJwr0Ij",
         "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "scope": "static",
-          "name": "SecureString",
-          "type": "datatype.secure_string"
-        },
-        "unique_name": "variable_workflow_015WDUKX77XS055AcxbUDG469gVXh0h4WV1",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.boolean",
-        "properties": {
-          "value": false,
-          "scope": "local",
-          "name": "LocalBoolean",
-          "type": "datatype.boolean"
-        },
-        "unique_name": "variable_workflow_015WDUW0T0M8R2rirZpHSRzIsMaTBY0jEEG",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.date",
-        "properties": {
-          "value": "2018-10-30T15:04:44.244401871Z",
-          "scope": "local",
-          "name": "Date",
-          "type": "datatype.date"
-        },
-        "unique_name": "variable_workflow_015WDVJFT2L244UG9efA9d4T5FLPcc9Sj3V",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.integer",
-        "properties": {
-          "value": 1,
-          "scope": "local",
-          "name": "LocalInteger",
-          "type": "datatype.integer"
-        },
-        "unique_name": "variable_workflow_015US2RZR80FE1sBAZe3ayrIINrBl7OahcJ",
-        "object_type": "variable_workflow"
       }
     ],
     "properties": {
@@ -112,7 +113,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": true,
-      "description": "test",
+      "description": "testtetete",
       "display_name": "RUSLAN-REDIS",
       "favorite": false,
       "target": {
@@ -123,122 +124,6 @@
       "timeout": 3600
     },
     "object_type": "definition_workflow",
-    "actions": [
-      {
-        "unique_name": "definition_activity_015URVIR8ANTR37fKOLEB7zDwg5LrmkTwek",
-        "name": "Sleep",
-        "title": "Sleep",
-        "type": "core.sleep",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "Sleep",
-          "sleep_interval": "$workflow.definition_workflow_015URV4W8EU8P3qqTxYiyFTJMK6fFvtowyn.local.variable_workflow_015US2RZR80FE1sBAZe3ayrIINrBl7OahcJ$"
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_015URVQ607NSO0YG8L8IiRQqSGIbXhCt1ME",
-        "name": "Sleep",
-        "title": "Sleep",
-        "type": "core.sleep",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "Sleep",
-          "sleep_interval": "$workflow.definition_workflow_015URV4W8EU8P3qqTxYiyFTJMK6fFvtowyn.input.variable_workflow_015US39HOWHRE1eiexYq3Dr13TwPE9HKnF9$"
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_015USEA2W7MK93oicYLeKlJbmohNi5E7GS2",
-        "name": "Sleep",
-        "title": "Sleep",
-        "type": "core.sleep",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "Sleep",
-          "sleep_interval": "$workflow.definition_workflow_015URV4W8EU8P3qqTxYiyFTJMK6fFvtowyn.input.variable_workflow_015US39HOWHRE1eiexYq3Dr13TwPE9HKnF9$"
-        },
-        "object_type": "definition_activity"
-      },
-      {
-        "unique_name": "definition_activity_015ZVWB6N00D47Vu0vStVq9bpBNWRs6UizN",
-        "name": "For Each",
-        "title": "For Each",
-        "type": "logic.for_each",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "For Each",
-          "source_array": "$workflow.definition_workflow_015URV4W8EU8P3qqTxYiyFTJMK6fFvtowyn.local.variable_workflow_015VMJ6X8J42F6D1VDmOz627ZYmVsJwr0Ij$"
-        },
-        "object_type": "definition_activity",
-        "actions": [
-          {
-            "unique_name": "definition_activity_015ZPKKEYJG970GBqCz6skpJUZmE3x1J20F",
-            "name": "workflowRuslan",
-            "title": "workflowRuslan",
-            "type": "workflow.sub_workflow",
-            "base_type": "subworkflow",
-            "properties": {
-              "atomic": {
-                "is_atomic": false
-              },
-              "continue_on_failure": false,
-              "delete_workflow_instance": false,
-              "display_name": "workflowRuslan",
-              "favorite": false,
-              "input": {},
-              "target": {
-                "execute_on_this_target": true,
-                "no_target": false,
-                "override_workflow_target": false,
-                "target_id": "definition_target_015OQC4X6WO7I1xpd2g12ldT4PRYiHx3O9I",
-                "target_type": "web-service.endpoint",
-                "use_workflow_target": false
-              },
-              "timeout": 3600,
-              "workflow_id": "definition_workflow_015ZMO9T0579Q5pWOvHD1uZ89Eejx1ADaHZ"
-            },
-            "object_type": "definition_activity"
-          },
-          {
-            "unique_name": "definition_activity_015ZRSY64GNJX51DvVhrqVc4IYEl26D2694",
-            "name": "Replace String",
-            "title": "Replace String",
-            "type": "core.replacestring",
-            "base_type": "activity",
-            "properties": {
-              "continue_on_failure": false,
-              "display_name": "Replace String",
-              "input_string": "$activity.definition_activity_015ZPKKEYJG970GBqCz6skpJUZmE3x1J20F.output.variable_workflow_015ZRQ01AWW6Z2Tc6ps3oNoE5YKOdcgkb4P$",
-              "replace_list": [
-                {
-                  "replaced_string": "$activity.definition_activity_015ZPKKEYJG970GBqCz6skpJUZmE3x1J20F.output.variable_workflow_015ZRQ01AWW6Z2Tc6ps3oNoE5YKOdcgkb4P$",
-                  "replacement_string": "aaaaaaaa"
-                }
-              ]
-            },
-            "object_type": "definition_activity"
-          }
-        ]
-      },
-      {
-        "unique_name": "definition_activity_015USEF897ANL4ZdwAT5uuTEqTbwp48Cf7W",
-        "name": "Sleep",
-        "title": "Sleep",
-        "type": "core.sleep",
-        "base_type": "activity",
-        "properties": {
-          "continue_on_failure": false,
-          "display_name": "Sleep",
-          "sleep_interval": "$global.variable_015UT74E5KWFS3RednBNphacrVDBTE5lbGo.global.variable_015UT74E5KWFS3RednBNphacrVDBTE5lbGo$"
-        },
-        "object_type": "definition_activity"
-      }
-    ],
     "categories": [
       "category_015IWZIXCORSQ3uOwUNDSoQW7LKXDX55CIQ"
     ]
@@ -322,22 +207,6 @@
     }
   },
   "targets": {
-    "definition_target_015OQC4X6WO7I1xpd2g12ldT4PRYiHx3O9I": {
-      "unique_name": "definition_target_015OQC4X6WO7I1xpd2g12ldT4PRYiHx3O9I",
-      "name": "ND_DNAC-tar",
-      "title": "ND_DNAC-tar",
-      "type": "web-service.endpoint",
-      "base_type": "target",
-      "object_type": "definition_target",
-      "properties": {
-        "default_runtime_user_id": "definition_runtime_user_015OQBU9J0IFJ4ojliMAD5v8tr0F3WEJzlg",
-        "disable_certificate_validation": true,
-        "display_name": "ND_DNAC-tar",
-        "host": "10.122.6.51",
-        "no_runtime_user": false,
-        "protocol": "https"
-      }
-    },
     "definition_target_015WCCMLPUUZ60CKFCoJcJRhPHj4cL1Heoq": {
       "unique_name": "definition_target_015WCCMLPUUZ60CKFCoJcJRhPHj4cL1Heoq",
       "name": "internalKafka-noauth",
@@ -372,17 +241,6 @@
     }
   },
   "runtime_users": {
-    "definition_runtime_user_015OQBU9J0IFJ4ojliMAD5v8tr0F3WEJzlg": {
-      "unique_name": "definition_runtime_user_015OQBU9J0IFJ4ojliMAD5v8tr0F3WEJzlg",
-      "name": "ND-DNAC-user",
-      "title": "ND-DNAC-user",
-      "type": "runtime_user.web-service_basic_credentials",
-      "base_type": "runtime_user",
-      "object_type": "definition_runtime_user",
-      "properties": {
-        "display_name": "ND-DNAC-user"
-      }
-    },
     "definition_runtime_user_01GL392jsVQARIRHOoEdfDPzDJzzwh12H": {
       "unique_name": "definition_runtime_user_01GL392jsVQARIRHOoEdfDPzDJzzwh12H",
       "name": "aus-65esxvc-01 user",
@@ -391,6 +249,8 @@
       "base_type": "runtime_user",
       "object_type": "definition_runtime_user",
       "properties": {
+        "basic_password": "*****",
+        "basic_username": "*****",
         "display_name": "aus-65esxvc-01 user"
       }
     }
@@ -405,38 +265,9 @@
         "type": "datatype.integer"
       },
       "object_type": "variable"
-    },
-    "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF": {
-      "unique_name": "variable_01gqxid4jgGlfDDvAH3b5EoSsUusGw4YF",
-      "properties": {
-        "value": "X-Auth-Token",
-        "scope": "global",
-        "name": "DNACAuthHeader",
-        "type": "datatype.string"
-      },
-      "object_type": "variable"
     }
   },
   "table_types": {
-    "tabletype_015HW0ZNDM5R77imTIlu5mTQthPvNLfmT8Q": {
-      "unique_name": "tabletype_015HW0ZNDM5R77imTIlu5mTQthPvNLfmT8Q",
-      "data_type": "datatype.tabletype",
-      "display_name": "TN - TableString",
-      "max_rows": 256,
-      "max_columns": 256,
-      "max_column_size": 1024,
-      "max_table_size": 26000,
-      "columns": [
-        {
-          "maxLength": 100,
-          "name": "Output",
-          "title": "OutputString",
-          "type": "string"
-        }
-      ],
-      "base_type": "datatype",
-      "object_type": "tabletype"
-    },
     "tabletype_01g4diSPEZ5kg0DqTWwukQNQfJEPMlMWT": {
       "unique_name": "tabletype_01g4diSPEZ5kg0DqTWwukQNQfJEPMlMWT",
       "data_type": "datatype.tabletype",
@@ -460,168 +291,5 @@
       "base_type": "datatype",
       "object_type": "tabletype"
     }
-  },
-  "subworkflows": [
-    {
-      "workflow": {
-        "unique_name": "definition_workflow_015ZMO9T0579Q5pWOvHD1uZ89Eejx1ADaHZ",
-        "name": "workflowRuslan",
-        "title": "workflowRuslan",
-        "type": "generic.workflow",
-        "base_type": "workflow",
-        "variables": [
-          {
-            "schema_id": "datatype.string",
-            "properties": {
-              "value": "12",
-              "scope": "output",
-              "name": "OutputString",
-              "type": "datatype.string"
-            },
-            "unique_name": "variable_workflow_015ZRQ01AWW6Z2Tc6ps3oNoE5YKOdcgkb4P",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "tabletype_01g4diSPEZ5kg0DqTWwukQNQfJEPMlMWT",
-            "properties": {
-              "value": [
-                {
-                  "column_data": {
-                    "id": "1",
-                    "name": "1"
-                  }
-                },
-                {
-                  "column_data": {
-                    "name": "2"
-                  }
-                }
-              ],
-              "scope": "local",
-              "name": "TABLE",
-              "type": "datatype.table"
-            },
-            "unique_name": "variable_workflow_015ZS15E7A5MG1Qm1CyvQ3jk4flWq1oAEd1",
-            "object_type": "variable_workflow"
-          },
-          {
-            "schema_id": "tabletype_015HW0ZNDM5R77imTIlu5mTQthPvNLfmT8Q",
-            "properties": {
-              "value": [
-                {
-                  "column_data": {
-                    "Output": "121212121212sasasasaasa"
-                  }
-                }
-              ],
-              "scope": "output",
-              "name": "TEST",
-              "type": "datatype.table"
-            },
-            "unique_name": "variable_workflow_015ZS1GLOAKYN7jgpsFRoqURsXSa4kBvyx0",
-            "object_type": "variable_workflow"
-          }
-        ],
-        "properties": {
-          "atomic": {
-            "is_atomic": false
-          },
-          "delete_workflow_instance": false,
-          "display_name": "workflowRuslan",
-          "favorite": false,
-          "target": {
-            "target_type": "web-service.endpoint",
-            "target_id": "definition_target_015OQC4X6WO7I1xpd2g12ldT4PRYiHx3O9I",
-            "execute_on_workflow_target": true
-          },
-          "timeout": 3600
-        },
-        "object_type": "definition_workflow",
-        "actions": [
-          {
-            "unique_name": "definition_activity_015ZVPBPKX0EY22WWVwHlVCWpEHHx25bLFq",
-            "name": "Get Access Token",
-            "title": "Get Access Token",
-            "type": "workflow.atomic_workflow",
-            "base_type": "subworkflow",
-            "properties": {
-              "atomic": {
-                "atomic_group": "Cisco DNA Center",
-                "is_atomic": true
-              },
-              "continue_on_failure": false,
-              "delete_workflow_instance": false,
-              "display_name": "Get Access Token",
-              "favorite": false,
-              "input": {},
-              "target": {
-                "execute_on_this_target": false,
-                "no_target": false,
-                "override_workflow_target": false,
-                "target_type": "015DULNZPRPXL75j7VwzfjmQQp6RgAHt294",
-                "use_workflow_target": true
-              },
-              "timeout": 3600,
-              "workflow_id": "definition_workflow_0152CDDIM1G7G72w1hEDpy9uFxIaCdAGcEi"
-            },
-            "object_type": "definition_activity"
-          },
-          {
-            "unique_name": "definition_activity_015ZMOKE99RM77irQRmkaIXT6utc1Qmlu2T",
-            "name": "Get Device Config for all Devices - New",
-            "title": "Get Device Config for all Devices - New",
-            "type": "workflow.atomic_workflow",
-            "base_type": "subworkflow",
-            "properties": {
-              "atomic": {
-                "atomic_group": "Cisco DNA Center",
-                "is_atomic": true
-              },
-              "continue_on_failure": false,
-              "delete_workflow_instance": false,
-              "display_name": "Get Device Config for all Devices - New",
-              "favorite": false,
-              "input": {},
-              "target": {
-                "execute_on_this_target": false,
-                "no_target": false,
-                "override_workflow_target": false,
-                "target_type": "015DULNZPRPXL75j7VwzfjmQQp6RgAHt294",
-                "use_workflow_target": true
-              },
-              "timeout": 3600,
-              "workflow_id": "definition_workflow_015VZZAV3E9LQ2Gjc5SVIP1CfVMQgEuGx2G"
-            },
-            "object_type": "definition_activity"
-          },
-          {
-            "unique_name": "definition_activity_015ZRQP2J87S61q36hDjO36uwdDwXnaz83l",
-            "name": "Replace String",
-            "title": "Replace String",
-            "type": "core.replacestring",
-            "base_type": "activity",
-            "properties": {
-              "continue_on_failure": false,
-              "display_name": "Replace String",
-              "input_string": "$activity.definition_activity_015ZMOKE99RM77irQRmkaIXT6utc1Qmlu2T.output.variable_workflow_015W03YH1UWU9303LRiFTvU37P0mSkAOVPS[0].deviceId$",
-              "replace_list": [
-                {
-                  "replaced_string": "$activity.definition_activity_015ZMOKE99RM77irQRmkaIXT6utc1Qmlu2T.output.variable_workflow_015W03YH1UWU9303LRiFTvU37P0mSkAOVPS[0].deviceId$",
-                  "replacement_string": "$workflow.definition_workflow_015ZMO9T0579Q5pWOvHD1uZ89Eejx1ADaHZ.output.instance_id$"
-                }
-              ]
-            },
-            "object_type": "definition_activity"
-          }
-        ],
-        "categories": [
-          "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
-        ]
-      }
-    }
-  ],
-  "atomic_workflows": [
-    "definition_workflow_0152CDDIM1G7G72w1hEDpy9uFxIaCdAGcEi",
-    "definition_workflow_015VZZAV3E9LQ2Gjc5SVIP1CfVMQgEuGx2G"
-  ]
+  }
 }
