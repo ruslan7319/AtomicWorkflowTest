@@ -90,6 +90,21 @@
       "timeout": 3600
     },
     "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_017U4USA0178I06GPiDrc3mHfzRbyfJZwaM",
+        "name": "Sleep",
+        "title": "Sleep",
+        "type": "core.sleep",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Sleep",
+          "sleep_interval": 1
+        },
+        "object_type": "definition_activity"
+      }
+    ],
     "categories": [
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
