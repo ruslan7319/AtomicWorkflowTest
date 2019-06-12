@@ -1,0 +1,326 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_017UWUBRJ02A84ZI0pdWk79Lzm8Dpm7BgKz",
+    "name": "Worklfow Creation and Delete every Minute",
+    "title": "Worklfow Creation and Delete every Minute",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Header: This workflow to creates wokrflow and delete\n\n* This workflow creates new workflow\n* Then it adds upper action to worklfow and source to \n     upper action\n* Validates and execute  the workflow\n* After execute first delete the instance the delete the \n     workflow\n",
+      "display_name": "Worklfow Creation and Delete every Minute",
+      "favorite": false,
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_017UWUCJLWAGS3rWqoOpCPOLqPOJVLQwI8e",
+        "name": "Generic CCS API Request",
+        "title": "GET Workflow Schema",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "display_name": "GET Workflow Schema",
+          "relative_url": "be-console/api/v1/workflows",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUCVBGLC03olvolIfpJHEIN3UU6jpzV",
+        "name": "JSONPath Query",
+        "title": "Extract workflow schema Id",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Extract workflow schema Id",
+          "input_json": "$activity.definition_activity_017UWUCJLWAGS3rWqoOpCPOLqPOJVLQwI8e.output.response_body$$activity.definition_activity_017UWUCJLWAGS3rWqoOpCPOLqPOJVLQwI8e.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.[1].schema_id",
+              "jsonpath_query_name": "workflow schema Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUD9ARMZ623paasuUCWmAPb4tNHXfV9",
+        "name": "Generic CCS API Request",
+        "title": "Create workflow",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"schema_id\": \"$activity.definition_activity_017UWUCVBGLC03olvolIfpJHEIN3UU6jpzV.output.jsonpath_queries.workflow schema Id$\",\n  \"properties\": {\n    \"display_name\": \"Automation Create Atomic Workflow $activity.definition_activity_017UWUCJLWAGS3rWqoOpCPOLqPOJVLQwI8e.output.start_time$\",\n    \"atomic\": {\n      \"is_atomic\": false\n    },\n    \"delete_workflow_instance\": false,\n    \"favorite\": false,\n    \"target\": {\n      \"execute_on_target_group\": true,\n      \"execute_on_workflow_target\": false,\n      \"no_target\": false,\n      \"specify_on_workflow_start\": false\n    }\n  }\n}",
+          "api_call_method": "POST",
+          "continue_on_failure": false,
+          "display_name": "Create workflow",
+          "relative_url": "be-console/api/v1/workflows",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUDP7T4E21LnbtX6xUKXRw2U2WmhKZ6",
+        "name": "JSONPath Query",
+        "title": "Extract Workflow Id",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Extract Workflow Id",
+          "input_json": "$activity.definition_activity_017UWUD9ARMZ623paasuUCWmAPb4tNHXfV9.output.response_body$$activity.definition_activity_017UWUD9ARMZ623paasuUCWmAPb4tNHXfV9.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..id",
+              "jsonpath_query_name": "workflow_id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            },
+            {
+              "jsonpath_query": "$..display_name",
+              "jsonpath_query_name": "displayname",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUE38AX9W2CIeKPx4VIyxrNv40SmLOo",
+        "name": "Generic CCS API Request",
+        "title": "GET Upper Action Schema",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "GET",
+          "continue_on_failure": false,
+          "display_name": "GET Upper Action Schema",
+          "relative_url": "be-console/api/v1/schemas/core.string2upper?schema_type=view",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUEE9WXB60dosGZlhmcPuldvJIcJtdk",
+        "name": "JSONPath Query",
+        "title": "Extracting upper action schema id",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Extracting upper action schema id",
+          "input_json": "$activity.definition_activity_017UWUE38AX9W2CIeKPx4VIyxrNv40SmLOo.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..schema_id",
+              "jsonpath_query_name": "Upper Action schema Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUERAUOL90TP9x3PrHiiWJXKoEh7Bfm",
+        "name": "Generic CCS API Request",
+        "title": "Adding Upper Action",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"previous_action\": {\n    \"id\": \"$activity.definition_activity_017UWUDP7T4E21LnbtX6xUKXRw2U2WmhKZ6.output.jsonpath_queries.workflow_id$\"\n  },\n  \"action\": {\n    \"schema_id\": \"$activity.definition_activity_017UWUEE9WXB60dosGZlhmcPuldvJIcJtdk.output.jsonpath_queries.Upper Action schema Id$\",\n    \"type\": \"core.string2upper\",\n    \"base_type\": \"activity\",\n    \"name\": \"To Upper\",\n    \"properties\": {\n      \"continue_on_failure\": false,\n      \"display_name\": \"To Upper\"\n    },\n    \"title\": \"To Upper\"\n  }\n}",
+          "api_call_method": "POST",
+          "continue_on_failure": false,
+          "display_name": "Adding Upper Action",
+          "relative_url": "be-console/api/v1/workflows/$activity.definition_activity_017UWUDP7T4E21LnbtX6xUKXRw2U2WmhKZ6.output.jsonpath_queries.workflow_id$/actions",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUF76NIZ16hPaQel7HdGKptdGdWUtlc",
+        "name": "JSONPath Query",
+        "title": "Extracting upper action Id",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Extracting upper action Id",
+          "input_json": "$activity.definition_activity_017UWUERAUOL90TP9x3PrHiiWJXKoEh7Bfm.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..id",
+              "jsonpath_query_name": "Upper action Id",
+              "jsonpath_query_type": "string",
+              "zdate_type_format": ""
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUFKABMYG24FREfHo2ggHMyhFpK13u2",
+        "name": "Generic CCS API Request",
+        "title": "Adding Source to Upper Action",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"id\": \"$activity.definition_activity_017UWUF76NIZ16hPaQel7HdGKptdGdWUtlc.output.jsonpath_queries.Upper action Id$\",\n  \"title\": \"To Upper\",\n  \"properties\": {\n    \"continue_on_failure\": false,\n    \"display_name\": \"To Upper\",\n    \"source\": \"This workflow created by automation\"\n  }\n}",
+          "api_call_method": "PUT",
+          "continue_on_failure": false,
+          "display_name": "Adding Source to Upper Action",
+          "relative_url": "be-console/api/v1/workflows/$activity.definition_activity_017UWUDP7T4E21LnbtX6xUKXRw2U2WmhKZ6.output.jsonpath_queries.workflow_id$/actions/$activity.definition_activity_017UWUF76NIZ16hPaQel7HdGKptdGdWUtlc.output.jsonpath_queries.Upper action Id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUG099SLI5FAcZXv9XnLS2VqfzHJU94",
+        "name": "Generic CCS API Request",
+        "title": "Updating Action",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"valid\": true,\n\n  \"properties\": {\n    \"atomic\": {\n      \"is_atomic\": false\n    },\n    \"delete_workflow_instance\": false,\n    \"favorite\": false,\n    \"target\": {\n      \"no_target\": true\n    },\n      \"display_name\": \"Workflow will delete in couple of seconds\"\n  }\n}",
+          "api_call_method": "PUT",
+          "continue_on_failure": false,
+          "display_name": "Updating Action",
+          "relative_url": "be-console/api/v1/workflows/$activity.definition_activity_017UWUDP7T4E21LnbtX6xUKXRw2U2WmhKZ6.output.jsonpath_queries.workflow_id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUGEEYNDL6hfsmRJEJQIBdOuSqj2X96",
+        "name": "Generic CCS API Request",
+        "title": "Validate worklfow",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_call_method": "POST",
+          "continue_on_failure": false,
+          "display_name": "Validate worklfow",
+          "relative_url": "be-console/api/v1/workflows/$activity.definition_activity_017UWUDP7T4E21LnbtX6xUKXRw2U2WmhKZ6.output.jsonpath_queries.workflow_id$/validate",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWUGX12CWN6fPesj6GUlUYSqFlFLPONS",
+        "name": "Generic CCS API Request",
+        "title": "Marking as atomic Workflow",
+        "type": "ccs.api_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "api_body": "{\n  \"valid\": true,\n  \"triggers\": null,\n  \"properties\": {\n    \"atomic\": {\n      \"is_atomic\": true,\n      \"atomic_group\": \"Atomic Workflows\"\n    },\n    \"delete_workflow_instance\": false,\n    \"favorite\": false,\n    \"target\": {\n      \"execute_on_target_group\": false,\n      \"execute_on_workflow_target\": false,\n      \"no_target\": true,\n      \"specify_on_workflow_start\": false\n    },\n    \"display_name\": \"Automation Create Atomic workflow\"\n  }\n}",
+          "api_call_method": "PUT",
+          "continue_on_failure": false,
+          "display_name": "Marking as atomic Workflow",
+          "relative_url": "be-console/api/v1/workflows/$activity.definition_activity_017UWUDP7T4E21LnbtX6xUKXRw2U2WmhKZ6.output.jsonpath_queries.workflow_id$",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01f9IQgvQRJv3tvlqwR145Bbrye0toH0Q"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_017UWVKDOKPM35P0LUnOO7T3W8USwX2m8Gg",
+        "name": "Completed",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Completed"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  }
+}
