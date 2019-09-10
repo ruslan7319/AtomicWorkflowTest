@@ -92,6 +92,18 @@
           "source": "$activity.definition_activity_019YO8H1ADG1N0D0WuJ67b9k9wANZAsHDfg.output.jsonpath_queries.title12$"
         },
         "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019ZNMETB1IPE2fZXxbJzsGAxEb87E8S4jK",
+        "name": "Completed",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Completed"
+        },
+        "object_type": "definition_activity"
       }
     ],
     "categories": [
