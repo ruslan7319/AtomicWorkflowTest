@@ -1,0 +1,98 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_019YO88DSMNO76XxENMJfGRu0EQcOQUl0Al",
+    "name": "JSONPATYH-workf",
+    "title": "JSONPATYH-workf",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.boolean",
+        "properties": {
+          "value": false,
+          "scope": "local",
+          "name": "TEST",
+          "type": "datatype.boolean",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_019ZJ57NI01B40kdBy6VcwswMaaHGEx0lLV",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "atomic_group": "Atomic",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "description": "ewewe",
+      "display_name": "JSONPATYH-workf",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "no_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_019YO8H1ADG1N0D0WuJ67b9k9wANZAsHDfg",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "JSONPath Query",
+          "input_json": "{\n  \"widget\": {\n    \"debug\": \"on\",\n    \"window\": {\n      \"title\": \"Sample Konfabulator Widget\",\n      \"name\": \"main_window\",\n      \"width\": 500,\n      \"height\": 500\n    },\n    \"image\": {\n      \"src\": \"Images/Sun.png\",\n      \"name\": \"sun1\",\n      \"hOffset\": 250,\n      \"vOffset\": 250,\n      \"alignment\": \"center\"\n    },\n    \"text\": {\n      \"data\": \"Click Here\",\n      \"size\": 36,\n      \"style\": \"bold\",\n      \"name\": \"text1\",\n      \"hOffset\": 250,\n      \"vOffset\": 100,\n      \"alignment\": \"center\",\n      \"onMouseUp\": \"sun1.opacity = (sun1.opacity / 100) * 90;\"\n    }\n  }\n}",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..widget..window..title",
+              "jsonpath_query_name": "title12",
+              "jsonpath_query_type": "string"
+            },
+            {
+              "jsonpath_query": "$..widget..window..name",
+              "jsonpath_query_name": "name12",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019YOE0TZUESO0m4Rk9Nhc3AEngJZbo7Ntb",
+        "name": "To Upper",
+        "title": "To Upper",
+        "type": "core.string2upper",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "To Upper",
+          "skip_execution": false,
+          "source": "$activity.definition_activity_019YO8H1ADG1N0D0WuJ67b9k9wANZAsHDfg.output.jsonpath_queries.name12$"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_019GJJD2V5OSN4VErFkyMpKZLIZykEYeBnO"
+    ]
+  },
+  "categories": {
+    "category_019GJJD2V5OSN4VErFkyMpKZLIZykEYeBnO": {
+      "unique_name": "category_019GJJD2V5OSN4VErFkyMpKZLIZykEYeBnO",
+      "name": "PSC_SERVICE",
+      "title": "PSC_SERVICE",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  }
+}
