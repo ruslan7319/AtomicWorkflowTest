@@ -78,6 +78,20 @@
           "source": "$activity.definition_activity_019YO8H1ADG1N0D0WuJ67b9k9wANZAsHDfg.output.jsonpath_queries.name12$"
         },
         "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_019ZNLBPB041J58ElkTXnxFC3s69r4SbxBz",
+        "name": "To Lower",
+        "title": "To Lower",
+        "type": "core.string2lower",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "To Lower",
+          "skip_execution": false,
+          "source": "$activity.definition_activity_019YO8H1ADG1N0D0WuJ67b9k9wANZAsHDfg.output.jsonpath_queries.title12$"
+        },
+        "object_type": "definition_activity"
       }
     ],
     "categories": [
