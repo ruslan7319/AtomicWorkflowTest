@@ -11,6 +11,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
+      "description": "qwqwq",
       "display_name": "RUSLANPARENT",
       "runtime_user": {
         "override_target_runtime_user": false,
