@@ -1,0 +1,78 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01A5GKGCWN6TW1wVQ6TV2qn2bBRk3WfiIhn",
+    "name": "RUSLANIMPORT5.0",
+    "title": "RUSLANIMPORT5.0",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "atomic_group": "Atomic",
+        "is_atomic": true
+      },
+      "delete_workflow_instance": true,
+      "display_name": "RUSLANIMPORT5.0",
+      "favorite": false,
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01A5GKGVKUS7D2bZGR48HA7HaMgxjuJLzJP",
+        "name": "To Upper",
+        "title": "To Upper",
+        "type": "core.string2upper",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "To Upper",
+          "skip_execution": false,
+          "source": "This workflow created by automation"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01A5LE2VZ5Y6Y7JoSyyfyU845OWKB5tHS4I",
+        "name": "Get Access Token1 - New",
+        "title": "Get Access Token1 - New",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Get Access Token1 - New",
+          "input": {
+            "variable_workflow_01A5L9UWQ5HEU7F3CwlU5UPY9BCQYLohEsU": "test"
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "016W8D9DXEHHQ2QJz3S1eJVkuRTVJi9rEyU",
+            "target_type": "015DW1Z4RV81P3WyLk9kTB5eaqnC01l1Q17"
+          },
+          "workflow_id": "definition_workflow_01A5L9U587BCL7MPUFs8h6DEqntGqmqJXAO"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "atomic_workflows": [
+    "definition_workflow_01A5L9U587BCL7MPUFs8h6DEqntGqmqJXAO"
+  ]
+}
