@@ -43,6 +43,20 @@
         "object_type": "definition_activity"
       },
       {
+        "unique_name": "definition_activity_01A5N3F29Y0A55NXiuMqlW2vXHmnbOAXJaQ",
+        "name": "Sleep",
+        "title": "Sleep",
+        "type": "core.sleep",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Sleep",
+          "skip_execution": false,
+          "sleep_interval": 100
+        },
+        "object_type": "definition_activity"
+      },
+      {
         "unique_name": "definition_activity_01A5LE2VZ5Y6Y7JoSyyfyU845OWKB5tHS4I",
         "name": "Get Access Token1 - New",
         "title": "Get Access Token1 - New",
