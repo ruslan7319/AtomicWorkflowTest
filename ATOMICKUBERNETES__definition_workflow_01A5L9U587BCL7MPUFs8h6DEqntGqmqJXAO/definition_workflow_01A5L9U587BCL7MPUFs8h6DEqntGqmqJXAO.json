@@ -10,6 +10,19 @@
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
+          "scope": "input",
+          "name": "Service Account Name",
+          "type": "datatype.string",
+          "description": "Enter Service Account Name",
+          "is_required": true
+        },
+        "unique_name": "variable_workflow_01A5L9UWQ5HEU7F3CwlU5UPY9BCQYLohEsU",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
           "scope": "local",
           "name": "Get Token Command",
           "type": "datatype.string",
@@ -30,19 +43,6 @@
         },
         "unique_name": "variable_workflow_01A5L9UWQ57XP23nxHJJWSEhzevNqAb79ZL",
         "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "Service Account Name",
-          "type": "datatype.string",
-          "description": "Enter Service Account Name",
-          "is_required": true
-        },
-        "unique_name": "variable_workflow_01A5L9UWQ5HEU7F3CwlU5UPY9BCQYLohEsU",
-        "object_type": "variable_workflow"
       }
     ],
     "properties": {
@@ -51,7 +51,7 @@
         "is_atomic": true
       },
       "delete_workflow_instance": true,
-      "description": "This atomic will publish token that can used to perform API operations for kubernetes. test",
+      "description": "This atomic will publish token that can used to perform API operations for kubernetes. test fsdfsfsdfasdf",
       "display_name": "Get Access Token1 - New",
       "favorite": false,
       "runtime_user": {
