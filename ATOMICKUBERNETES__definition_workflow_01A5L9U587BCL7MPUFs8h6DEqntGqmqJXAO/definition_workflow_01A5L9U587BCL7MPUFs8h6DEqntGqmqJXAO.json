@@ -7,6 +7,19 @@
     "base_type": "workflow",
     "variables": [
       {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "*****",
+          "scope": "output",
+          "name": "Access Token",
+          "type": "datatype.secure_string",
+          "description": "Output Access Token",
+          "is_required": false
+        },
+        "unique_name": "variable_workflow_01A5L9UWQ57XP23nxHJJWSEhzevNqAb79ZL",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
@@ -30,19 +43,6 @@
         },
         "unique_name": "variable_workflow_01A5L9UWQ5M416RAWsi02Hby9WnVuafEdqv",
         "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "*****",
-          "scope": "output",
-          "name": "Access Token",
-          "type": "datatype.secure_string",
-          "description": "Output Access Token",
-          "is_required": false
-        },
-        "unique_name": "variable_workflow_01A5L9UWQ57XP23nxHJJWSEhzevNqAb79ZL",
-        "object_type": "variable_workflow"
       }
     ],
     "properties": {
@@ -51,7 +51,7 @@
         "is_atomic": true
       },
       "delete_workflow_instance": true,
-      "description": "This atomic will publish token that can used to perform API operations for kubernetes. test fsdfsfsdfasdf",
+      "description": "This atomic will publish token that can used to perform API operations for kubernetes. test fsdfsfsdfasdf 1212",
       "display_name": "Get Access Token1 - New",
       "favorite": false,
       "runtime_user": {
