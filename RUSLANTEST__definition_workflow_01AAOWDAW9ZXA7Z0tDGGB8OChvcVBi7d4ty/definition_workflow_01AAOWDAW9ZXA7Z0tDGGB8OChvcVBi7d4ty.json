@@ -1,0 +1,104 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01AAOWDAW9ZXA7Z0tDGGB8OChvcVBi7d4ty",
+    "name": "TRIGERWORKFLOW",
+    "title": "TRIGERWORKFLOW",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "TRIGERWORKFLOW",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": false,
+        "execute_on_workflow_target": false,
+        "no_target": true,
+        "specify_on_workflow_start": false
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01AAOWK41ZDUJ0jNU17MsnyGjnVAJGlkEmP",
+        "name": "Completed",
+        "title": "Completed",
+        "type": "logic.completed",
+        "base_type": "activity",
+        "properties": {
+          "completion_type": "succeeded",
+          "display_name": "Completed"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "triggers": {
+    "triggerevent_01AAOXY3YF29W7272Cga0CJrHwdzBP20f2J": {
+      "workflow_id": "definition_workflow_01AAOWDAW9ZXA7Z0tDGGB8OChvcVBi7d4ty",
+      "name": "Trigger",
+      "title": "",
+      "lowercase_name": "event.trigger",
+      "type": "event",
+      "base_type": "trigger",
+      "ref_id": "event_01AAOTANQO31P26lyuibvBtNAkjKbmFSG2E",
+      "version": "",
+      "disabled": false,
+      "unique_name": "triggerevent_01AAOXY3YF29W7272Cga0CJrHwdzBP20f2J",
+      "object_type": "triggerevent"
+    }
+  },
+  "events": {
+    "event_01AAOTANQO31P26lyuibvBtNAkjKbmFSG2E": {
+      "name": "NEWINTERNALKAFKA",
+      "title": "NEWINTERNALKAFKA",
+      "description": "test",
+      "type": "kafka.event",
+      "base_type": "event",
+      "object_type": "event",
+      "target_id": "definition_target_01AAOQZRX6IUJ2vwSEQXpqISWRdL0cOTKfD",
+      "version": "1.0.0",
+      "properties": {
+        "conditions": {
+          "left_operand": "$output.message$",
+          "operator": "ne",
+          "right_operand": "TEST"
+        },
+        "description": "test",
+        "display_name": "NEWINTERNALKAFKA",
+        "target_id": "definition_target_01AAOQZRX6IUJ2vwSEQXpqISWRdL0cOTKfD",
+        "title": "NEWINTERNALKAFKA",
+        "topic_name": "LATEST"
+      },
+      "unique_name": "event_01AAOTANQO31P26lyuibvBtNAkjKbmFSG2E"
+    }
+  },
+  "targets": {
+    "definition_target_01AAOQZRX6IUJ2vwSEQXpqISWRdL0cOTKfD": {
+      "unique_name": "definition_target_01AAOQZRX6IUJ2vwSEQXpqISWRdL0cOTKfD",
+      "name": "Interna KafkaLATEST",
+      "title": "Interna KafkaLATEST",
+      "type": "kafka.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "Interna KafkaLATEST",
+        "host": "10.98.71.60",
+        "no_runtime_user": true,
+        "port": 9092,
+        "ssl_enable": false
+      }
+    }
+  }
+}
