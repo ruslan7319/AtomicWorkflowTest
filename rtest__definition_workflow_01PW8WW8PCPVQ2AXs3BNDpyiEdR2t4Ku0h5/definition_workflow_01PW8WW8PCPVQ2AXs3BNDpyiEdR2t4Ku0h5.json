@@ -7,16 +7,16 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.secure_string",
+        "schema_id": "datatype.string",
         "properties": {
-          "value": "",
+          "value": "password\n\n",
           "scope": "local",
-          "name": "JWTToken",
-          "type": "datatype.secure_string",
+          "name": " password",
+          "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01PXP0IGNQ3FT1X6TGQbVbVkEJ1VjcnBV8f",
+        "unique_name": "variable_workflow_01Q15DN17JSEA3q0tf51GmBTZ5Y9iKQSqSd",
         "object_type": "variable_workflow"
       },
       {
@@ -24,25 +24,12 @@
         "properties": {
           "value": "",
           "scope": "local",
-          "name": "JWTSecureString",
+          "name": "CacheSecure",
           "type": "datatype.secure_string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01PXP0BFYR7ZA3ZzUcMBlZ8TL9RFxA8wEKo",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.secure_string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "Accept-Language",
-          "type": "datatype.secure_string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01PXSRISOTTBW51L1yxLFEFFWUhuo3vmkDu",
+        "unique_name": "variable_workflow_01PXPED3VRN4V7CJh06nB85peTnxM9Iddpj",
         "object_type": "variable_workflow"
       },
       {
@@ -59,29 +46,16 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "password\n\n",
-          "scope": "local",
-          "name": " password",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01Q15DN17JSEA3q0tf51GmBTZ5Y9iKQSqSd",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
+        "schema_id": "datatype.secure_string",
         "properties": {
           "value": "",
           "scope": "local",
-          "name": "Cache",
-          "type": "datatype.string",
+          "name": "Accept-Language",
+          "type": "datatype.secure_string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01PXPEKHFKSGD1erLrLsrNjrRDi31Gggs0H",
+        "unique_name": "variable_workflow_01PXSRISOTTBW51L1yxLFEFFWUhuo3vmkDu",
         "object_type": "variable_workflow"
       },
       {
@@ -102,12 +76,38 @@
         "properties": {
           "value": "",
           "scope": "local",
-          "name": "CacheSecure",
+          "name": "JWTSecureString",
           "type": "datatype.secure_string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01PXPED3VRN4V7CJh06nB85peTnxM9Iddpj",
+        "unique_name": "variable_workflow_01PXP0BFYR7ZA3ZzUcMBlZ8TL9RFxA8wEKo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "JWTToken",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXP0IGNQ3FT1X6TGQbVbVkEJ1VjcnBV8f",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Cache",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXPEKHFKSGD1erLrLsrNjrRDi31Gggs0H",
         "object_type": "variable_workflow"
       }
     ],
@@ -333,7 +333,7 @@
         "properties": {
           "continue_on_failure": true,
           "display_name": "Set Variables output cache to secure string",
-          "skip_execution": true,
+          "skip_execution": false,
           "variables_to_update": [
             {
               "variable_to_update": "$workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXPED3VRN4V7CJh06nB85peTnxM9Iddpj$",
@@ -365,7 +365,7 @@
           "runtime_user": {
             "target_default": true
           },
-          "skip_execution": true,
+          "skip_execution": false,
           "target": {
             "override_workflow_target": true,
             "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
@@ -397,7 +397,7 @@
           "runtime_user": {
             "target_default": true
           },
-          "skip_execution": true,
+          "skip_execution": false,
           "target": {
             "override_workflow_target": true,
             "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
@@ -429,7 +429,7 @@
           "runtime_user": {
             "target_default": true
           },
-          "skip_execution": true,
+          "skip_execution": false,
           "target": {
             "override_workflow_target": true,
             "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
