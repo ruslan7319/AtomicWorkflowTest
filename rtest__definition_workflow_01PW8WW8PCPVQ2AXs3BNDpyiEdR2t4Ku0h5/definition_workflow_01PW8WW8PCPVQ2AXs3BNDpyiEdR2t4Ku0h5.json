@@ -1,0 +1,517 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5",
+    "name": "JWT token validation",
+    "title": "JWT token validation",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "JWTToken",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXP0IGNQ3FT1X6TGQbVbVkEJ1VjcnBV8f",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "JWTSecureString",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXP0BFYR7ZA3ZzUcMBlZ8TL9RFxA8wEKo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Accept-Language",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXSRISOTTBW51L1yxLFEFFWUhuo3vmkDu",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "JWTTokenString",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXP2HO69IFL3baAz7xAyNBuJRJOCFSRIE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "password\n\n",
+          "scope": "local",
+          "name": " password",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01Q15DN17JSEA3q0tf51GmBTZ5Y9iKQSqSd",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Cache",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXPEKHFKSGD1erLrLsrNjrRDi31Gggs0H",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Authorization",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXT30NQJ21Q6Mjcc2jyBAgnEDORSMWQSw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "CacheSecure",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01PXPED3VRN4V7CJh06nB85peTnxM9Iddpj",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "JWT token validation",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "no_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01PXOUK1Z92Z66jdm2M2FyUCXioCPtjZ4Tt",
+        "name": "Execute Python Script",
+        "title": "Execute Python Script ( Random String)",
+        "type": "python3.script",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "Execute Python Script ( Random String)",
+          "script": "import random\nimport string\n\n# printing lowercase\nletters = string.ascii_lowercase\nprint ( ''.join(random.choice(letters) for i in range(10)) )",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PW8XA9NFODI4DJaRgkb4hwYkKkmvr7KEU",
+        "name": "HTTP Request",
+        "title": "HTTP Request - SignUp - Get JWT Token",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{ \"email\":\"$activity.definition_activity_01PXOUK1Z92Z66jdm2M2FyUCXioCPtjZ4Tt.output.response_body$@testing.com\",\n  \"$global.variable_01Q15OD0GOAL02bTPDTOf8kMmWfnUcuV85e.global.variable_01Q15OD0GOAL02bTPDTOf8kMmWfnUcuV85e$\":\"$env.variable_01Q15FX6YR8A33q1hGm6FVME9jKkN83c3FO.env.variable_01Q15FX6YR8A33q1hGm6FVME9jKkN83c3FO[0].URL$\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "display_name": "HTTP Request - SignUp - Get JWT Token",
+          "method": "POST",
+          "relative_url": "/signup",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PXP4E31A79J48LicQgG3S2FWAWK0nqNkq",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "JSONPath Query",
+          "input_json": "$activity.definition_activity_01PW8XA9NFODI4DJaRgkb4hwYkKkmvr7KEU.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$..token",
+              "jsonpath_query_name": "token",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PXP18GFBHK95toH4BVf8x4LPkrjajn0AM",
+        "name": "Set Variables",
+        "title": "Set Variables. SecureString",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables. SecureString",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXP0BFYR7ZA3ZzUcMBlZ8TL9RFxA8wEKo$",
+              "variable_value_new": "$activity.definition_activity_01PXP4E31A79J48LicQgG3S2FWAWK0nqNkq.output.jsonpath_queries.token$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PXP1OGXM3H45QMwyQgcylQMlBS6j6mgFz",
+        "name": "Set Variables",
+        "title": "Set Variables String",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables String",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXP2HO69IFL3baAz7xAyNBuJRJOCFSRIE$",
+              "variable_value_new": "$activity.definition_activity_01PXP4E31A79J48LicQgG3S2FWAWK0nqNkq.output.jsonpath_queries.token$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PWXAGG6MTBD2yMyVk9yi3FKMATkWjrP41",
+        "name": "HTTP Request",
+        "title": "HTTP Request -SignIn-without JTW",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{ \"email\":\"$activity.definition_activity_01PXOUK1Z92Z66jdm2M2FyUCXioCPtjZ4Tt.output.response_body$@testing.com\",\n  \"password\":\"rrrrrrr\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "description": "regular login and password",
+          "display_name": "HTTP Request -SignIn-without JTW",
+          "method": "POST",
+          "relative_url": "/signin",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PWX4FWIRPAE6CinKkYJlwQqL1N5bBGHHJ",
+        "name": "HTTP Request",
+        "title": "HTTP Request login using JWT only - Valid ( secure string)",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "$workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXT30NQJ21Q6Mjcc2jyBAgnEDORSMWQSw$",
+              "value": "Bearer $workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXP0BFYR7ZA3ZzUcMBlZ8TL9RFxA8wEKo$"
+            }
+          ],
+          "display_name": "HTTP Request login using JWT only - Valid ( secure string)",
+          "method": "GET",
+          "relative_url": "/restricted",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PXP9VFL36FU7mx6pOhMu43TqdNqm712iS",
+        "name": "HTTP Request",
+        "title": "HTTP Request login using JWT only - Valid (string)",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": false,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXP2HO69IFL3baAz7xAyNBuJRJOCFSRIE$"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "$workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXSRISOTTBW51L1yxLFEFFWUhuo3vmkDu$"
+            }
+          ],
+          "display_name": "HTTP Request login using JWT only - Valid (string)",
+          "method": "GET",
+          "relative_url": "/restricted",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PXPM4SZ4M776DfeJnF4uioD8IXN5pIyuQ",
+        "name": "Set Variables",
+        "title": "Set Variables output cache to secure string",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "Set Variables output cache to secure string",
+          "skip_execution": true,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXPED3VRN4V7CJh06nB85peTnxM9Iddpj$",
+              "variable_value_new": "$activity.definition_activity_01PWX4FWIRPAE6CinKkYJlwQqL1N5bBGHHJ.output.cookie[0]$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PXPFCDGYG3O0nCg7VtSY9OJjfoHLglwgZ",
+        "name": "HTTP Request",
+        "title": "HTTP Request login using CACHE only - Valid (Valid)",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "cookie": [
+            "$workflow.definition_workflow_01PW8WW8PCPVQ2AXs3BNDpyiEdR2t4Ku0h5.local.variable_workflow_01PXPED3VRN4V7CJh06nB85peTnxM9Iddpj$"
+          ],
+          "description": "SecureString",
+          "display_name": "HTTP Request login using CACHE only - Valid (Valid)",
+          "method": "GET",
+          "relative_url": "/restricted",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": true,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PWXGA18BCEL3RO1krEFCoaSEro253s0Xt",
+        "name": "HTTP Request",
+        "title": "HTTP Request login using JWT only - Valid",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXUyJ9.eyJzdWIiOjExMTYwLCJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFuZ3VsYXItand0Lmhlcm9rdWFwcC5jb21cL3NpZ251cCIsImlhdCI6IjE2MjYzNjg4OTQiLCJleHAiOiIxNjI2MzcyNDk0IiwibmJmIjoiMTYyNjM2ODg5NCIsImp0aSI6IjA5ODA1ZDE1NzFiMDFhYzgwNGZiOTVkODk0M2ZlNjc3In0.NDBiZTI1NjZiMzY2Yzk1MDQ5NjViZWI3NjVkNWNiMjBhZDNlMzg4ZDA3NTBhYTdhZjgyNzI5ZDRlNjNkMjk3ZQ"
+            }
+          ],
+          "display_name": "HTTP Request login using JWT only - Valid",
+          "method": "GET",
+          "relative_url": "/",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": true,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01PWXDRJYUBZM4pxfAsdlMzNnCh8MPKsWCT",
+        "name": "HTTP Request",
+        "title": "HTTP Request login using JWT only - invalid",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": true,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer JhbGciOiJIUzI1NiIsInR5cCI6IkpXUyJ9.eyJzdWIiOjExMTYwLCJpc3MiOiJodHRwOlwvXC9sYXJhdmVsLWFuZ3VsYXItand0Lmhlcm9rdWFwcC5jb21cL3NpZ251cCIsImlhdCI6IjE2MjYzNjg4OTQiLCJleHAiOiIxNjI2MzcyNDk0IiwibmJmIjoiMTYyNjM2ODg5NCIsImp0aSI6IjA5ODA1ZDE1NzFiMDFhYzgwNGZiOTVkODk0M2ZlNjc3In0.NDBiZTI1NjZiMzY2Yzk1MDQ5NjViZWI3NjVkNWNiMjBhZDNlMzg4ZDA3NTBhYTdhZjgyNzI5ZDRlNjNkMjk3ZQ"
+            }
+          ],
+          "display_name": "HTTP Request login using JWT only - invalid",
+          "method": "GET",
+          "relative_url": "/restricted",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": true,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2"
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2": {
+      "unique_name": "definition_target_01PWX24UN8LC13gtj8iUGAePvlGEWCiXrw2",
+      "name": "JWT",
+      "title": "JWT",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "description": "HTTP",
+        "disable_certificate_validation": false,
+        "display_name": "JWT",
+        "host": "laravel-angular-jwt.herokuapp.com",
+        "ignore_proxy": false,
+        "no_runtime_user": true,
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  },
+  "variables": {
+    "variable_01Q15FX6YR8A33q1hGm6FVME9jKkN83c3FO": {
+      "unique_name": "variable_01Q15FX6YR8A33q1hGm6FVME9jKkN83c3FO",
+      "schema_id": "tabletype_01Q13RM8OIA8A7kMYUvii4pF39qwChASrG3",
+      "properties": {
+        "value": [
+          {
+            "column_data": {
+              "URL": "rrrrrrr"
+            }
+          }
+        ],
+        "scope": "env",
+        "name": "GlobalTable",
+        "type": "datatype.table",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    },
+    "variable_01Q15OD0GOAL02bTPDTOf8kMmWfnUcuV85e": {
+      "unique_name": "variable_01Q15OD0GOAL02bTPDTOf8kMmWfnUcuV85e",
+      "properties": {
+        "value": "password",
+        "scope": "global",
+        "name": "password",
+        "type": "datatype.string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    }
+  },
+  "table_types": {
+    "tabletype_01Q13RM8OIA8A7kMYUvii4pF39qwChASrG3": {
+      "unique_name": "tabletype_01Q13RM8OIA8A7kMYUvii4pF39qwChASrG3",
+      "data_type": "datatype.tabletype",
+      "display_name": "URL1",
+      "columns": [
+        {
+          "maxLength": 200,
+          "maximum": 0,
+          "minimum": 0,
+          "name": "URL",
+          "title": "URL",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
