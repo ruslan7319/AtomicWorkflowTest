@@ -1,0 +1,90 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01ZY17ICC7JIG4jhC9PKXTlirkcM88EI72b",
+    "name": "send mail auth code",
+    "title": "send mail auth code",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "send mail auth code",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "email.azure_graph_endpoint",
+        "target_id": "definition_target_01ZY177NVJ82W3mefvmuqNGeZ4xIzXco47b",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01ZY188BQYNG80HoY67QuZRUBEvGxBG5HEn",
+        "name": "Send Email",
+        "title": "Send Email",
+        "type": "email.smtp_send_email",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "body": "auth code token",
+          "continue_if_one_address_valid": false,
+          "continue_on_failure": false,
+          "display_name": "Send Email",
+          "from": "secops1@securitydemo.net",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "subject": "Hello from auth code",
+          "target": {
+            "use_workflow_target": true
+          },
+          "to": "bingupta@cisco.com"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01ZY177NVJ82W3mefvmuqNGeZ4xIzXco47b": {
+      "unique_name": "definition_target_01ZY177NVJ82W3mefvmuqNGeZ4xIzXco47b",
+      "name": "targetauth",
+      "title": "targetauth",
+      "type": "email.azure_graph_endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01ZY15M8LTYM83IcDyZBuxLjBvVqyRCyixj",
+        "display_name": "targetauth",
+        "host": "https://graph.microsoft.com/v1.0",
+        "user_id": "secops1@securitydemo.net"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01ZY15M8LTYM83IcDyZBuxLjBvVqyRCyixj": {
+      "unique_name": "definition_runtime_user_01ZY15M8LTYM83IcDyZBuxLjBvVqyRCyixj",
+      "name": "authcode1",
+      "title": "authcode1",
+      "type": "runtime_user.oauth2_azure_graph_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "client_id": "75419940-b036-4fea-b559-c8cec6705e1a",
+        "display_name": "authcode1",
+        "grant_type": "authorization_code",
+        "redirect_url": "http://localhost:3000/redirect/",
+        "scope": "openid offline_access mail.readwrite mail.send user.read",
+        "tenant_id": "f131e32e-2532-4e5f-80fc-f9cd8fcaea27"
+      }
+    }
+  }
+}
