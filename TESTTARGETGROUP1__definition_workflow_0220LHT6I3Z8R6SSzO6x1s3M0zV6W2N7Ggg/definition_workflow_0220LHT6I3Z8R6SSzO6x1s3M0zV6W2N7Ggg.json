@@ -1,0 +1,1413 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg",
+    "name": "Default SecureX Interntal Targets",
+    "title": "Default SecureX Interntal Targets",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "ConditionBlock2",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_0220LN115PLYI34Uyjxq5fZjUf9mN9y5vIw",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Email Template",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_022322KP7TGAG0E7DUzzlAK0cIg3EZ5y0oj",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "ConditionBlock3",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_0220LN5U13QJB1hyuB9twpBgc7h0irR7IVR",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "All Action TRUE/FALL",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_02232265IBDCQ2zsa3sViofVaOaNpnO6neW",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "ConditionBlock1",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_0220LMW172RLP3wpcBEDLNbm27qJNssDjcX",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "This is workflow to test default internal target for SecureX :\n  SecureX APIs,\n  SecureX Private Intelligence API,\n  SecureX Public Intelligence API\n(works for INT and TEST env)\n\n",
+      "display_name": "Default SecureX Interntal Targets",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "execute_on_target_group": true,
+        "target_group": {
+          "target_group_id": "target_group_021S5TO7B7K4L66Z4HCWoC6bZJuFWZsENAH",
+          "run_on_all_targets": true,
+          "selected_target_types": [
+            "web-service.endpoint"
+          ]
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_0220LICJC1C8J0jjmJVWJ3m8af7tU8psBGk",
+        "name": "Group",
+        "title": "Secure API's",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "Secure API's",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u",
+            "name": "HTTP Request",
+            "title": "HTTP Request GET /iroh-auth/login ( MUST PASS)",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request GET /iroh-auth/login ( MUST PASS)",
+              "method": "GET",
+              "relative_url": "/iroh-auth/login",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX APIs*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U",
+            "name": "HTTP Request",
+            "title": "HTTP Request GET /invite/available-roles ( MUST PASS)",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request GET /invite/available-roles ( MUST PASS)",
+              "method": "GET",
+              "relative_url": "/invite/available-roles",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX APIs*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220LJ0EXQ14Z4lKfuOMtSVpPySOBxdiZr5",
+            "name": "HTTP Request",
+            "title": "HTTP Request POST /invite/invites/search ( MUST FAIL)",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "body": "{\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request POST /invite/invites/search ( MUST FAIL)",
+              "method": "POST",
+              "relative_url": "/invite/invites/search",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX APIs*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220LM0JOKOKE4MbTJgHNq0zpjYujYlKjhb",
+            "name": "Condition Block",
+            "title": "Valdate Secure API's",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "Valdate Secure API's",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_0220LM0JWPIOM6U4SgmdFT3Cn7dDzPeqy6J",
+                "name": "Condition Branch",
+                "title": "Condition Branch PASS",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": {
+                      "left_operand": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u.output.error.code$",
+                              "operator": "eq",
+                              "right_operand": "200"
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$activity.definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u.output.response_body$",
+                              "operator": "mw",
+                              "right_operand": "*SecureX*"
+                            }
+                          },
+                          "operator": "and",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U.output.error.code$",
+                            "operator": "eq",
+                            "right_operand": "200"
+                          }
+                        },
+                        "operator": "and",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U.output.response_body$",
+                          "operator": "mw",
+                          "right_operand": "*user*"
+                        }
+                      },
+                      "operator": "and",
+                      "right_operand": {
+                        "left_operand": "$activity.definition_activity_0220LJ0EXQ14Z4lKfuOMtSVpPySOBxdiZr5.output.succeeded$",
+                        "operator": "eq",
+                        "right_operand": false
+                      }
+                    },
+                    "operator": "and",
+                    "right_operand": {
+                      "left_operand": "$activity.definition_activity_0220LJ0EXQ14Z4lKfuOMtSVpPySOBxdiZr5.output.error.message$",
+                      "operator": "mw",
+                      "right_operand": "*missing scope*"
+                    }
+                  },
+                  "continue_on_failure": true,
+                  "display_name": "Condition Branch PASS",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0220LXJFYCX7D4hShbBEbfK1vIURSG8AeXE",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": true,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LMW172RLP3wpcBEDLNbm27qJNssDjcX$",
+                          "variable_value_new": "true"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_0220LM0K16PNV6eZFoScueQfCwKSnNO3ZF9",
+                "name": "Condition Branch",
+                "title": "Condition Branch FAIL",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": {
+                      "left_operand": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u.output.error.code$",
+                              "operator": "ne",
+                              "right_operand": "200"
+                            },
+                            "operator": "or",
+                            "right_operand": {
+                              "left_operand": "$activity.definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u.output.response_body$",
+                              "operator": "nmw",
+                              "right_operand": "*SecureX*"
+                            }
+                          },
+                          "operator": "or",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U.output.error.code$",
+                            "operator": "ne",
+                            "right_operand": "200"
+                          }
+                        },
+                        "operator": "or",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U.output.response_body$",
+                          "operator": "nmw",
+                          "right_operand": "*user*"
+                        }
+                      },
+                      "operator": "or",
+                      "right_operand": {
+                        "left_operand": "$activity.definition_activity_0220LJ0EXQ14Z4lKfuOMtSVpPySOBxdiZr5.output.succeeded$",
+                        "operator": "eq",
+                        "right_operand": true
+                      }
+                    },
+                    "operator": "or",
+                    "right_operand": {
+                      "left_operand": "$activity.definition_activity_0220LJ0EXQ14Z4lKfuOMtSVpPySOBxdiZr5.output.error.message$",
+                      "operator": "nmw",
+                      "right_operand": "*missing scope*"
+                    }
+                  },
+                  "continue_on_failure": true,
+                  "display_name": "Condition Branch FAIL",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0220LXSJ10N8Q00VYjfGBhiShFAMPPedIlo",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": true,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LMW172RLP3wpcBEDLNbm27qJNssDjcX$",
+                          "variable_value_new": "false"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0220M5AH7LVKO6GkZje9ndAK2Hf543PXbyb",
+        "name": "Group",
+        "title": "SecureX Public Intelligence API",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "SecureX Public Intelligence API",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0220M6BFMQDU126vZ9NqUGpELNvHWFwkIXS",
+            "name": "HTTP Request",
+            "title": "HTTP Request ( POST ) Global Repo (MUST FAIL )",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "body": "{\n  \"observable\": {\n    \"value\": \"fasdfasdasds.net\",\n    \"type\": \"domain\"\n  },\n  \"source\": \"string\",\n  \"priority\": 0,\n  \"severity\": \"Medium\",\n  \"confidence\": \"Medium\"\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request ( POST ) Global Repo (MUST FAIL )",
+              "method": "POST",
+              "relative_url": "/ctia/judgement",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Public*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA",
+            "name": "HTTP Request",
+            "title": "HTTP Request ( GET ) Global Repo (MUST PASS ) Search Everything",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request ( GET ) Global Repo (MUST PASS ) Search Everything",
+              "method": "GET",
+              "relative_url": "/ctia/attack-pattern/search?sort_order=desc",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Public*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy",
+            "name": "HTTP Request",
+            "title": "HTTP Request (GET) Global Repo (MUST PASS) Search by external ID",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request (GET) Global Repo (MUST PASS) Search by external ID",
+              "method": "GET",
+              "relative_url": "/ctia/attack-pattern/external_id/attack-pattern--8f1a2752-6bf6-46de-8ad1-7455214da405",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Public*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220MUMTY7I6J4OmKwLBy2i5FERRiMsqmIH",
+            "name": "Condition Block",
+            "title": "Valdate SecureX Public Intelligence API",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "Valdate SecureX Public Intelligence API",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_0220MUMU4VXXW1EDJc1YILaBGVN99u4AS7b",
+                "name": "Condition Branch",
+                "title": "Condition Branch PASS",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": {
+                      "left_operand": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_0220M6BFMQDU126vZ9NqUGpELNvHWFwkIXS.output.error.code$",
+                              "operator": "eq",
+                              "right_operand": "403"
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$activity.definition_activity_0220M6BFMQDU126vZ9NqUGpELNvHWFwkIXS.output.error.message$",
+                              "operator": "mw",
+                              "right_operand": "*missing_capability*"
+                            }
+                          },
+                          "operator": "and",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA.output.error.code$",
+                            "operator": "eq",
+                            "right_operand": "200"
+                          }
+                        },
+                        "operator": "and",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA.output.response_body$",
+                          "operator": "mw",
+                          "right_operand": "*attack-pattern*"
+                        }
+                      },
+                      "operator": "and",
+                      "right_operand": {
+                        "left_operand": "$activity.definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy.output.error.code$",
+                        "operator": "eq",
+                        "right_operand": "200"
+                      }
+                    },
+                    "operator": "and",
+                    "right_operand": {
+                      "left_operand": "$activity.definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy.output.response_body$",
+                      "operator": "mw",
+                      "right_operand": "*attack-pattern--8f1a2752-6bf6-46de-8ad1-7455214da405*"
+                    }
+                  },
+                  "continue_on_failure": true,
+                  "display_name": "Condition Branch PASS",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0220NLVN018OQ6lwapISTLq74B6FTCBoJvF",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": true,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN115PLYI34Uyjxq5fZjUf9mN9y5vIw$",
+                          "variable_value_new": "true"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_0220MUMUC233I0S5McEk1Tp6jg1St5C8vVf",
+                "name": "Condition Branch",
+                "title": "Condition Branch FAIL",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": {
+                      "left_operand": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_0220M6BFMQDU126vZ9NqUGpELNvHWFwkIXS.output.error.code$",
+                              "operator": "ne",
+                              "right_operand": "403"
+                            },
+                            "operator": "or",
+                            "right_operand": {
+                              "left_operand": "$activity.definition_activity_0220M6BFMQDU126vZ9NqUGpELNvHWFwkIXS.output.error.message$",
+                              "operator": "nmw",
+                              "right_operand": "*missing_capability*"
+                            }
+                          },
+                          "operator": "or",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA.output.error.code$",
+                            "operator": "ne",
+                            "right_operand": "200"
+                          }
+                        },
+                        "operator": "or",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA.output.response_body$",
+                          "operator": "nmw",
+                          "right_operand": "*attack-pattern*"
+                        }
+                      },
+                      "operator": "or",
+                      "right_operand": {
+                        "left_operand": "$activity.definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy.output.error.code$",
+                        "operator": "ne",
+                        "right_operand": "200"
+                      }
+                    },
+                    "operator": "or",
+                    "right_operand": {
+                      "left_operand": "$activity.definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy.output.response_body$",
+                      "operator": "nmw",
+                      "right_operand": "*attack-pattern--8f1a2752-6bf6-46de-8ad1-7455214da405*"
+                    }
+                  },
+                  "continue_on_failure": true,
+                  "display_name": "Condition Branch FAIL",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_0220NM7IY1UKV0De59mtgazcKeLEKZq1h9V",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": true,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN115PLYI34Uyjxq5fZjUf9mN9y5vIw$",
+                          "variable_value_new": "false"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_0220OPIY8OJZ86dkLu2oCjnWGxFxol2UoFh",
+        "name": "Group",
+        "title": "SecureX Private Intelligence API",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "SecureX Private Intelligence API",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_0220OQCDUB6FH4fAtQddcxw9GHOJAswKo3D",
+            "name": "HTTP Request",
+            "title": "HTTP Request GET ( Search Judgement ) MUST PASS",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request GET ( Search Judgement ) MUST PASS",
+              "method": "GET",
+              "relative_url": "/ctia/judgement/search?sort_order=desc",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Private*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220OUEV7WRFX6i1NtrWe3o6Yi8Tf7Cj4hC",
+            "name": "HTTP Request",
+            "title": "HTTP Request ( Create Search Judgement )  MUST PASS",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "body": "{\n  \"observable\": {\n    \"value\": \"fasdfasdasds.net\",\n    \"type\": \"domain\"\n  },\n  \"source\": \"string\",\n  \"priority\": 0,\n  \"severity\": \"Medium\",\n  \"confidence\": \"Medium\"\n}",
+              "content_type": "application/json",
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request ( Create Search Judgement )  MUST PASS",
+              "method": "POST",
+              "relative_url": "/ctia/judgement",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Private*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220OVL2AT6W063hL1sgd81XF7OJoBKonKg",
+            "name": "Sleep",
+            "title": "Sleep 5",
+            "type": "core.sleep",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "Sleep 5",
+              "skip_execution": false,
+              "sleep_interval": 5
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220OVZ29W2OL4VlzpBBKOEFX1ZXspicgsp",
+            "name": "JSONPath Query",
+            "title": "JSONPath Query GET ID  MUST PASS",
+            "type": "corejava.jsonpathquery",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "continue_on_failure": true,
+              "display_name": "JSONPath Query GET ID  MUST PASS",
+              "input_json": "$activity.definition_activity_0220OUEV7WRFX6i1NtrWe3o6Yi8Tf7Cj4hC.output.response_body$",
+              "jsonpath_queries": [
+                {
+                  "jsonpath_query": "$..id",
+                  "jsonpath_query_name": "full_id",
+                  "jsonpath_query_type": "string",
+                  "zdate_type_format": "yyyy-MM-dd'T'HH:mm:ssZ"
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220OXJ4URNG76wPTNIWf8WMDsBwgBpNph5",
+            "name": "Replace String",
+            "title": "Replace String get actual ID  MUST PASS",
+            "type": "core.replacestring",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "Replace String get actual ID  MUST PASS",
+              "input_string": "$activity.definition_activity_0220OVZ29W2OL4VlzpBBKOEFX1ZXspicgsp.output.jsonpath_queries.full_id$",
+              "replace_list": [
+                {
+                  "replaced_string": "https://private.intel.test.iroh.site:443/ctia/judgement/",
+                  "replacement_string": ""
+                }
+              ],
+              "skip_execution": false
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0",
+            "name": "HTTP Request",
+            "title": "HTTP Request ( Open by Judgement ID) MUST PASS",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request ( Open by Judgement ID) MUST PASS",
+              "method": "GET",
+              "relative_url": "/ctia/judgement/$activity.definition_activity_0220OXJ4URNG76wPTNIWf8WMDsBwgBpNph5.output.result_string$",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Private*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220OZLZ1479D2iXx5kurrisHs3ngdAnKax",
+            "name": "Sleep",
+            "title": "Sleep 5",
+            "type": "core.sleep",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "Sleep 5",
+              "skip_execution": false,
+              "sleep_interval": 5
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220P1BWJDB1H1gVbvVLWBf8tmOzovY07G8",
+            "name": "HTTP Request",
+            "title": "HTTP Request ( DELETE Judgement  by ID) MUST PASS",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request ( DELETE Judgement  by ID) MUST PASS",
+              "method": "DELETE",
+              "relative_url": "/ctia/judgement/$activity.definition_activity_0220OXJ4URNG76wPTNIWf8WMDsBwgBpNph5.output.result_string$",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Private*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220P1YT3POOS0JOEjf9br2Posr39SYlIU4",
+            "name": "Sleep",
+            "title": "Sleep 5",
+            "type": "core.sleep",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Sleep 5",
+              "skip_execution": false,
+              "sleep_interval": 5
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0220P2P10ZJDR5bWqQLT76zzqQ1qf1DBQ7t",
+            "name": "HTTP Request",
+            "title": "HTTP Request ( GET Judgement  by ID) MUST FAIL",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "continue_on_error_status_code": false,
+              "continue_on_failure": true,
+              "display_name": "HTTP Request ( GET Judgement  by ID) MUST FAIL",
+              "method": "GET",
+              "relative_url": "/ctia/judgement/$activity.definition_activity_0220OXJ4URNG76wPTNIWf8WMDsBwgBpNph5.output.result_string$",
+              "runtime_user": {
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "override_workflow_target_group_criteria": true,
+                "target_group": {
+                  "run_on_all_targets": false,
+                  "use_criteria": {
+                    "choose_target_using_algorithm": "choose_first_with_matching_criteria",
+                    "conditions": [
+                      {
+                        "left_operand": "$targetgroup.web-service endpoint.input.description$",
+                        "operator": "mw",
+                        "right_operand": "*SecureX Private*"
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_0222ZSEK096ZE2PpRxhBReTqhZy08CPWWyS",
+            "name": "Condition Block",
+            "title": "Validate SecureX Private Intelligence API",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "Validate SecureX Private Intelligence API",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_0222ZSEK710KT7S0Ao4bjVUWxX6TzlNrhM9",
+                "name": "Condition Branch",
+                "title": "Condition Branch PASS",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": {
+                      "left_operand": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": {
+                                "left_operand": {
+                                  "left_operand": {
+                                    "left_operand": {
+                                      "left_operand": "$activity.definition_activity_0220OQCDUB6FH4fAtQddcxw9GHOJAswKo3D.output.succeeded$",
+                                      "operator": "eq",
+                                      "right_operand": true
+                                    },
+                                    "operator": "and",
+                                    "right_operand": {
+                                      "left_operand": "$activity.definition_activity_0220OQCDUB6FH4fAtQddcxw9GHOJAswKo3D.output.error.code$",
+                                      "operator": "eq",
+                                      "right_operand": "200"
+                                    }
+                                  },
+                                  "operator": "and",
+                                  "right_operand": {
+                                    "left_operand": "$activity.definition_activity_0220OUEV7WRFX6i1NtrWe3o6Yi8Tf7Cj4hC.output.response_body$",
+                                    "operator": "mw",
+                                    "right_operand": "*valid_time*"
+                                  }
+                                },
+                                "operator": "and",
+                                "right_operand": {
+                                  "left_operand": "$activity.definition_activity_0220OVZ29W2OL4VlzpBBKOEFX1ZXspicgsp.output.succeeded$",
+                                  "operator": "eq",
+                                  "right_operand": true
+                                }
+                              },
+                              "operator": "and",
+                              "right_operand": {
+                                "left_operand": "$activity.definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0.output.response_body$",
+                                "operator": "mw",
+                                "right_operand": "*owner*"
+                              }
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$activity.definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0.output.error.code$",
+                              "operator": "eq",
+                              "right_operand": "200"
+                            }
+                          },
+                          "operator": "and",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_0220P1BWJDB1H1gVbvVLWBf8tmOzovY07G8.output.status_code$",
+                            "operator": "eq",
+                            "right_operand": 204
+                          }
+                        },
+                        "operator": "and",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_0220P2P10ZJDR5bWqQLT76zzqQ1qf1DBQ7t.output.error.code$",
+                          "operator": "eq",
+                          "right_operand": "404"
+                        }
+                      },
+                      "operator": "and",
+                      "right_operand": {
+                        "left_operand": "$activity.definition_activity_0220P2P10ZJDR5bWqQLT76zzqQ1qf1DBQ7t.output.error.message$",
+                        "operator": "mw",
+                        "right_operand": "*404 message*"
+                      }
+                    },
+                    "operator": "and",
+                    "right_operand": {
+                      "left_operand": "$activity.definition_activity_0220P2P10ZJDR5bWqQLT76zzqQ1qf1DBQ7t.output.succeeded$",
+                      "operator": "eq",
+                      "right_operand": false
+                    }
+                  },
+                  "continue_on_failure": true,
+                  "display_name": "Condition Branch PASS",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_02231KO2I4JSP2EJ7LXt3JMfag8uk13oyiL",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": true,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN5U13QJB1hyuB9twpBgc7h0irR7IVR$",
+                          "variable_value_new": "true"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_0222ZSEKEKVNV2GRpePFjErAZFU5pPtqtCx",
+                "name": "Condition Branch",
+                "title": "Condition Branch FAIL",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": {
+                      "left_operand": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": {
+                                "left_operand": {
+                                  "left_operand": {
+                                    "left_operand": {
+                                      "left_operand": "$activity.definition_activity_0220OQCDUB6FH4fAtQddcxw9GHOJAswKo3D.output.succeeded$",
+                                      "operator": "ne",
+                                      "right_operand": true
+                                    },
+                                    "operator": "or",
+                                    "right_operand": {
+                                      "left_operand": "$activity.definition_activity_0220OQCDUB6FH4fAtQddcxw9GHOJAswKo3D.output.error.code$",
+                                      "operator": "ne",
+                                      "right_operand": "200"
+                                    }
+                                  },
+                                  "operator": "or",
+                                  "right_operand": {
+                                    "left_operand": "$activity.definition_activity_0220OUEV7WRFX6i1NtrWe3o6Yi8Tf7Cj4hC.output.response_body$",
+                                    "operator": "nmw",
+                                    "right_operand": "*valid_time*"
+                                  }
+                                },
+                                "operator": "or",
+                                "right_operand": {
+                                  "left_operand": "$activity.definition_activity_0220OVZ29W2OL4VlzpBBKOEFX1ZXspicgsp.output.succeeded$",
+                                  "operator": "ne",
+                                  "right_operand": true
+                                }
+                              },
+                              "operator": "or",
+                              "right_operand": {
+                                "left_operand": "$activity.definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0.output.response_body$",
+                                "operator": "nmw",
+                                "right_operand": "*owner*"
+                              }
+                            },
+                            "operator": "or",
+                            "right_operand": {
+                              "left_operand": "$activity.definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0.output.error.code$",
+                              "operator": "ne",
+                              "right_operand": "200"
+                            }
+                          },
+                          "operator": "or",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_0220P1BWJDB1H1gVbvVLWBf8tmOzovY07G8.output.status_code$",
+                            "operator": "ne",
+                            "right_operand": 204
+                          }
+                        },
+                        "operator": "or",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_0220P2P10ZJDR5bWqQLT76zzqQ1qf1DBQ7t.output.error.code$",
+                          "operator": "ne",
+                          "right_operand": "404"
+                        }
+                      },
+                      "operator": "or",
+                      "right_operand": {
+                        "left_operand": "$activity.definition_activity_0220P2P10ZJDR5bWqQLT76zzqQ1qf1DBQ7t.output.error.message$",
+                        "operator": "nmw",
+                        "right_operand": "*404 message*"
+                      }
+                    },
+                    "operator": "or",
+                    "right_operand": {
+                      "left_operand": "$activity.definition_activity_0220P2P10ZJDR5bWqQLT76zzqQ1qf1DBQ7t.output.succeeded$",
+                      "operator": "eq",
+                      "right_operand": true
+                    }
+                  },
+                  "continue_on_failure": true,
+                  "display_name": "Condition Branch FAIL",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_02231KYD403VD05T21oUqh6EOqkxvKaqsD0",
+                    "name": "Set Variables",
+                    "title": "Set Variables",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": true,
+                      "display_name": "Set Variables",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN5U13QJB1hyuB9twpBgc7h0irR7IVR$",
+                          "variable_value_new": "false"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_02231L7NKET5U5CXnCSOIqhwQ9VYrMROv1J",
+        "name": "Condition Block",
+        "title": "Summary",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "Summary",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_02231L7NROQWP171ACZPuNdICEzV3rmUXxe",
+            "name": "Condition Branch",
+            "title": "Condition Branch PASS",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": {
+                  "left_operand": {
+                    "left_operand": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LMW172RLP3wpcBEDLNbm27qJNssDjcX$",
+                    "operator": "eq",
+                    "right_operand": "true"
+                  },
+                  "operator": "and",
+                  "right_operand": {
+                    "left_operand": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN115PLYI34Uyjxq5fZjUf9mN9y5vIw$",
+                    "operator": "eq",
+                    "right_operand": "true"
+                  }
+                },
+                "operator": "and",
+                "right_operand": {
+                  "left_operand": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN5U13QJB1hyuB9twpBgc7h0irR7IVR$",
+                  "operator": "eq",
+                  "right_operand": "true"
+                }
+              },
+              "continue_on_failure": true,
+              "display_name": "Condition Branch PASS",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_022322R8ACLE7072xheKBgqjpDqenGVISLg",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.output.variable_workflow_02232265IBDCQ2zsa3sViofVaOaNpnO6neW$",
+                      "variable_value_new": "✔✅All SecureX ( internal default targets) Actions are Passed"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_02231L7NYTHNR2sesSj5G79p4st3pid1uOl",
+            "name": "Condition Branch",
+            "title": "Condition Branch FALSE",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": {
+                  "left_operand": {
+                    "left_operand": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LMW172RLP3wpcBEDLNbm27qJNssDjcX$",
+                    "operator": "eq",
+                    "right_operand": "false"
+                  },
+                  "operator": "or",
+                  "right_operand": {
+                    "left_operand": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN115PLYI34Uyjxq5fZjUf9mN9y5vIw$",
+                    "operator": "eq",
+                    "right_operand": "false"
+                  }
+                },
+                "operator": "or",
+                "right_operand": {
+                  "left_operand": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.local.variable_workflow_0220LN5U13QJB1hyuB9twpBgc7h0irR7IVR$",
+                  "operator": "eq",
+                  "right_operand": "false"
+                }
+              },
+              "continue_on_failure": true,
+              "display_name": "Condition Branch FALSE",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_022323V1Y8ZJE5rc8OIh9a4OBsp2qogFAix",
+                "name": "Set Variables",
+                "title": "Set Variables",
+                "type": "core.set_multiple_variables",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Set Variables",
+                  "skip_execution": false,
+                  "variables_to_update": [
+                    {
+                      "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.output.variable_workflow_02232265IBDCQ2zsa3sViofVaOaNpnO6neW$",
+                      "variable_value_new": "❌⭕Some Actions are failed please check the Instance : $workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.output.instance_id$"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_022324LQ3ZDK17Xc1h939y3lqB5WTUSyNaR",
+        "name": "Set Variables",
+        "title": "Email Template",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "Email Template",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$workflow.definition_workflow_0220LHT6I3Z8R6SSzO6x1s3M0zV6W2N7Ggg.output.variable_workflow_022322KP7TGAG0E7DUzzlAK0cIg3EZ5y0oj$",
+              "variable_value_new": "\u003ch2\u003e SecureX APIs, SecureX Private Intelligence API, SecureX Public Intelligence API  \u003c/h2\u003e\n\u003ctable\u003e\n\u003ctr\u003e\n\u003cth\u003eActivity Name\u003c/th\u003e\n\u003cth\u003eTrue/False\u003c/th\u003e\n\u003cth\u003eError Code\u003c/th\u003e\n\u003cth\u003eError Message\u003c/th\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSecureX APIs Get /iroh-auth/login\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u.output.succeeded$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u.output.error.code$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220LIX2YLYY24gYwRKrVbutBgoCIfRdt5u.output.error.message$\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSecureX APIs Get /invite/available-roles \u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U.output.succeeded$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U.output.error.code$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220LIYR96P8I4sbOKE2L6VaMbTAQuqTi8U.output.error.message$\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSecureX Public Intelligence API Seach Everything\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA.output.succeeded$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA.output.error.code$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220MA3U517044sQhes1efcSnWY7ic7izOA.output.error.message$\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSecureX Public Intelligence API  Search by external ID\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy.output.succeeded$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy.output.error.code$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220MC560XH3I7Bk7e6ElLWWpnuyf8aUvOy.output.error.message$\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSecureX Private Intelligence API Create Judgement\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220OUEV7WRFX6i1NtrWe3o6Yi8Tf7Cj4hC.output.succeeded$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220OUEV7WRFX6i1NtrWe3o6Yi8Tf7Cj4hC.output.error.code$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220OUEV7WRFX6i1NtrWe3o6Yi8Tf7Cj4hC.output.error.message$\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSecureX Private Intelligence API Open by judgement ID\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0.output.succeeded$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0.output.error.code$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220OYKR51W94296cBAaOZ4NkA19XKztUD0.output.error.message$\u003c/td\u003e\n\u003c/tr\u003e\n\u003ctr\u003e\n\u003ctd\u003eSecureX Private Intelligence API Delete by judgement ID\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220P1BWJDB1H1gVbvVLWBf8tmOzovY07G8.output.succeeded$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220P1BWJDB1H1gVbvVLWBf8tmOzovY07G8.output.error.code$\u003c/td\u003e\n\u003ctd\u003e$activity.definition_activity_0220P1BWJDB1H1gVbvVLWBf8tmOzovY07G8.output.error.message$\u003c/td\u003e\n\u003c/tr\u003e\n\u003c/table\u003e"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "target_groups": {
+    "target_group_021S5TO7B7K4L66Z4HCWoC6bZJuFWZsENAH": {
+      "unique_name": "target_group_021S5TO7B7K4L66Z4HCWoC6bZJuFWZsENAH",
+      "name": "Integrated Target Group",
+      "title": "Integrated Target Group",
+      "type": "generic.target_group",
+      "base_type": "target_group",
+      "version": "1.0.0",
+      "targets": [
+        {
+          "data_target_type": "web-service.endpoint",
+          "view_target_type": "web-service.endpoint",
+          "include_all_targets": false,
+          "criteria": [
+            {
+              "operator": "mregex",
+              "left_operand": "$input.description$",
+              "right_operand": "(enrichment|private|global)"
+            }
+          ]
+        }
+      ],
+      "object_type": "target_group"
+    }
+  }
+}
