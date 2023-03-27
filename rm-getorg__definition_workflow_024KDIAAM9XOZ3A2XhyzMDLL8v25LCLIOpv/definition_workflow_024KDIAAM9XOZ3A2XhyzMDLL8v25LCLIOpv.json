@@ -1,0 +1,337 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_024KDIAAM9XOZ3A2XhyzMDLL8v25LCLIOpv",
+    "name": "r-m - Get Organizations",
+    "title": "r-m - Get Organizations",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Organization List",
+          "type": "datatype.string",
+          "description": "The list of organizations the API key provided has access to",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_024KDIAAVW7JI1nzEhbiMFasqFt4YNsDlG8",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Meraki API Key",
+          "type": "datatype.secure_string",
+          "description": "Your Meraki API key. This can be generated in your Meraki dashboard",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_024KDIAAVVV5R5KmkEpS21dYoBRXFRG8q1a",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "Gets a list of Cisco Meraki organizations that the API key provided has access to.\n\nTarget: HTTP Endpoint for \"api.meraki.com\" with a path of \"/api\"\n\nAccount Key: None (uses an API key)\n\nSteps:\n[] Request a list of organizations\n[] Check if the request was successful:\n[]\u003e If it was, set the output variable\n[]\u003e If it wasn't, return an error\n\nMore information about this API: https://developer.cisco.com/meraki/api-v1/#!get-organizations",
+      "display_name": "r-m - Get Organizations",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "$module_target;Meraki;securex:ao:meraki$",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_024KDIAD454VE03z4VO7Tpjcn34lVr6KzOW",
+        "name": "Group",
+        "title": "Use Meraki Integrated target",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Use Meraki Integrated target",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_024KDIAE99D7O3RCtKM1wBZX0LwC7nmpXMI",
+            "name": "HTTP Request",
+            "title": "Get the organization list",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "content_type": "application/json",
+              "continue_on_error_status_code": true,
+              "continue_on_failure": false,
+              "display_name": "Get the organization list",
+              "method": "GET",
+              "relative_url": "v1/organizations",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_024KDIAEWJ43K0zhtVP9I2ZC4FaOynxF7HN",
+            "name": "Condition Block",
+            "title": "Was the request successful?",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Was the request successful?",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_024KDIAFKJ09W4njxGTiwkeSCrmcyd1W29u",
+                "name": "Condition Branch",
+                "title": "200/Success",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_024KDIAE99D7O3RCtKM1wBZX0LwC7nmpXMI.output.status_code$",
+                    "operator": "eq",
+                    "right_operand": 200
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "200/Success",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_024KDIAGMPVV43vQZ9zx1FZFhhcVqc6aqKc",
+                    "name": "Set Variables",
+                    "title": "Set output variable",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set output variable",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_024KDIAAM9XOZ3A2XhyzMDLL8v25LCLIOpv.output.variable_workflow_024KDIAAVW7JI1nzEhbiMFasqFt4YNsDlG8$",
+                          "variable_value_new": "$activity.definition_activity_024KDIAE99D7O3RCtKM1wBZX0LwC7nmpXMI.output.response_body$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_024KDIAHJ6UBK5HLG1pwWQw6wmt6ijKsg23",
+                "name": "Condition Branch",
+                "title": "Anything else",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_024KDIAE99D7O3RCtKM1wBZX0LwC7nmpXMI.output.status_code$",
+                    "operator": "ne",
+                    "right_operand": 200
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Anything else",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_024KDIAIHV9UM4RUtv3gongt9FXdpWfT4P1",
+                    "name": "Completed",
+                    "title": "Failed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "failed-completed",
+                      "continue_on_failure": false,
+                      "display_name": "Failed",
+                      "result_message": "Failed to fetch the organization list\n\nStatus code: $activity.definition_activity_024KDIAE99D7O3RCtKM1wBZX0LwC7nmpXMI.output.status_code$\nResponse body: $activity.definition_activity_024KDIAE99D7O3RCtKM1wBZX0LwC7nmpXMI.output.response_body$",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "unique_name": "definition_activity_024KDIAJ1YIM37D1G8vaxRF7ZLTFYUnfVzp",
+        "name": "Group",
+        "title": "Use HTTP target with API key",
+        "type": "logic.group",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Use HTTP target with API key",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "actions": [
+          {
+            "unique_name": "definition_activity_024KDIAK4GEBK2Wt2rYrCn54Q8IurqT7YLl",
+            "name": "HTTP Request",
+            "title": "Get the organization list",
+            "type": "web-service.http_request",
+            "base_type": "activity",
+            "properties": {
+              "accept": "application/json",
+              "action_timeout": 180,
+              "allow_auto_redirect": true,
+              "allow_headers_redirect": false,
+              "content_type": "application/json",
+              "continue_on_error_status_code": true,
+              "continue_on_failure": false,
+              "custom_headers": [
+                {
+                  "name": "X-Cisco-Meraki-API-Key",
+                  "value": "$workflow.definition_workflow_024KDIAAM9XOZ3A2XhyzMDLL8v25LCLIOpv.local.variable_workflow_024KDIAAVVV5R5KmkEpS21dYoBRXFRG8q1a$"
+                }
+              ],
+              "display_name": "Get the organization list",
+              "method": "GET",
+              "relative_url": "v1/organizations",
+              "runtime_user": {
+                "override_target_runtime_user": false,
+                "target_default": true
+              },
+              "skip_execution": false,
+              "target": {
+                "use_workflow_target": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_024KDIAKQGABT3GoH9VrDJB38AeIpckUw1U",
+            "name": "Condition Block",
+            "title": "Was the request successful?",
+            "type": "logic.if_else",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Was the request successful?",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "blocks": [
+              {
+                "unique_name": "definition_activity_024KDIALDF1OW37gE64lFeanaZhWnuApYLU",
+                "name": "Condition Branch",
+                "title": "200/Success",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_024KDIAK4GEBK2Wt2rYrCn54Q8IurqT7YLl.output.status_code$",
+                    "operator": "eq",
+                    "right_operand": 200
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "200/Success",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_024KDIAMFNL4I3QHWEtOFrCv1xtzmecCEVR",
+                    "name": "Set Variables",
+                    "title": "Set output variable",
+                    "type": "core.set_multiple_variables",
+                    "base_type": "activity",
+                    "properties": {
+                      "continue_on_failure": false,
+                      "display_name": "Set output variable",
+                      "skip_execution": false,
+                      "variables_to_update": [
+                        {
+                          "variable_to_update": "$workflow.definition_workflow_024KDIAAM9XOZ3A2XhyzMDLL8v25LCLIOpv.output.variable_workflow_024KDIAAVW7JI1nzEhbiMFasqFt4YNsDlG8$",
+                          "variable_value_new": "$activity.definition_activity_024KDIAE99D7O3RCtKM1wBZX0LwC7nmpXMI.output.response_body$"
+                        }
+                      ]
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_024KDIANCHEO04ewuOpdv8z8khMtGfC5T6P",
+                "name": "Condition Branch",
+                "title": "Anything else",
+                "type": "logic.condition_block",
+                "base_type": "activity",
+                "properties": {
+                  "condition": {
+                    "left_operand": "$activity.definition_activity_024KDIAK4GEBK2Wt2rYrCn54Q8IurqT7YLl.output.status_code$",
+                    "operator": "ne",
+                    "right_operand": 200
+                  },
+                  "continue_on_failure": false,
+                  "display_name": "Anything else",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_024KDIAOBO8003Pt95Wcx3pdyQJWOr4WzBX",
+                    "name": "Completed",
+                    "title": "Failed",
+                    "type": "logic.completed",
+                    "base_type": "activity",
+                    "properties": {
+                      "completion_type": "failed-completed",
+                      "continue_on_failure": false,
+                      "display_name": "Failed",
+                      "result_message": "Failed to fetch the organization list\n\nStatus code: $activity.definition_activity_024KDIAK4GEBK2Wt2rYrCn54Q8IurqT7YLl.output.status_code$\nResponse body: $activity.definition_activity_024KDIAK4GEBK2Wt2rYrCn54Q8IurqT7YLl.output.response_body$",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01FzsThUQ3yXAswxOItEqLAIiGLEPlIt0"
+    ]
+  },
+  "module_targets": [
+    {
+      "module_type": "Meraki",
+      "external_id": "securex:ao:meraki"
+    }
+  ]
+}
