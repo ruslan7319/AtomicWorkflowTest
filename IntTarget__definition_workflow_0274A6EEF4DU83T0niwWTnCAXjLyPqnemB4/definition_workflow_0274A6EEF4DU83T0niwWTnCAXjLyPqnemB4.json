@@ -11,6 +11,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
+      "description": "fsafdsafd",
       "display_name": "Target Group Module Target",
       "runtime_user": {
         "target_default": true
@@ -660,32 +661,7 @@
     }
   },
   "events": {
-    "event_024Y3GDGIR6XL3y4ig1n78wZ7WjrxI5SIdl": {
-      "name": "Incident ( No PR RULE)",
-      "title": "Incident ( No PR RULE)",
-      "type": "incident.event",
-      "base_type": "event",
-      "object_type": "event",
-      "rule_id": "ruleevent_024Y3GDGK2YKE2tnLQyP4znZ6H5TX5dAGFm",
-      "target_id": "",
-      "webhook_id": "",
-      "version": "1.0.0",
-      "properties": {
-        "conditions": {
-          "left_operand": "$output.eventsCount$",
-          "operator": "gt",
-          "right_operand": 0
-        },
-        "description": "",
-        "disabled": false,
-        "display_name": "Incident ( No PR RULE)",
-        "group_by": false,
-        "rule_type": "rule_event",
-        "title": "Incident ( No PR RULE)"
-      },
-      "unique_name": "event_024Y3GDGIR6XL3y4ig1n78wZ7WjrxI5SIdl"
-    },
-    "event_0274HCTDVTGAD4uzexzwmlzNHFRp2kKji3W": {
+    "event_027KFQ7GN9TS21joVudLG0BXPWlz5AxGwA6": {
       "name": "Incident1",
       "title": "Incident1",
       "type": "incident.event",
@@ -709,12 +685,37 @@
         "stop_subsequent_rules": false,
         "title": "Incident1"
       },
-      "unique_name": "event_0274HCTDVTGAD4uzexzwmlzNHFRp2kKji3W"
+      "unique_name": "event_027KFQ7GN9TS21joVudLG0BXPWlz5AxGwA6"
+    },
+    "event_027KFQ7GOI7OW7SLsdCN2GTUPpUibW469MA": {
+      "name": "Incident ( No PR RULE)",
+      "title": "Incident ( No PR RULE)",
+      "type": "incident.event",
+      "base_type": "event",
+      "object_type": "event",
+      "rule_id": "ruleevent_024Y3GDGK2YKE2tnLQyP4znZ6H5TX5dAGFm",
+      "target_id": "",
+      "webhook_id": "",
+      "version": "1.0.0",
+      "properties": {
+        "conditions": {
+          "left_operand": "$output.eventsCount$",
+          "operator": "gt",
+          "right_operand": 0
+        },
+        "description": "",
+        "disabled": false,
+        "display_name": "Incident ( No PR RULE)",
+        "group_by": false,
+        "rule_type": "rule_event",
+        "title": "Incident ( No PR RULE)"
+      },
+      "unique_name": "event_027KFQ7GOI7OW7SLsdCN2GTUPpUibW469MA"
     }
   },
   "schedules": {
-    "schedule_02749XDBAG1YG3yrSoK1GX88A8Y1GAGFmRG": {
-      "unique_name": "schedule_02749XDBAG1YG3yrSoK1GX88A8Y1GAGFmRG",
+    "schedule_02759IGLA5WNX3gwI57829MpTqcFHVa3Ixx": {
+      "unique_name": "schedule_02759IGLA5WNX3gwI57829MpTqcFHVa3Ixx",
       "name": "Ruslan",
       "type": "basic.schedule",
       "base_type": "schedule",
@@ -775,33 +776,33 @@
   },
   "module_targets": [
     {
-      "module_type": "Microsoft Defender for Endpoint",
-      "external_id": "securex:ao:defender"
-    },
-    {
       "module_type": "Trend Micro",
       "external_id": "securex:ao:trendmicro"
     },
     {
       "module_type": "Cybereason",
       "external_id": "securex:ao:cybereason"
+    },
+    {
+      "module_type": "Microsoft Defender for Endpoint",
+      "external_id": "securex:ao:defender"
     }
   ],
   "wf_rule_trigger": {
-    "triggerevent_0274HCTE1EJ006qIAEllUfvAP3vjS79v4y9": {
+    "triggerevent_027KFTAUUAI3L01JjnJHhqjCWK5RazoGhdA": {
       "wf_unique_name": "definition_workflow_0274A6EEF4DU83T0niwWTnCAXjLyPqnemB4",
       "rule_unique_name": "ruleevent_0274HCTDX0Q0L7coxfxhkmAtoCXahiCkWpg",
-      "trig_unique_name": "triggerevent_0274HCTE1EJ006qIAEllUfvAP3vjS79v4y9"
+      "trig_unique_name": "triggerevent_027KFTAUUAI3L01JjnJHhqjCWK5RazoGhdA"
     },
-    "triggerevent_0279EXPXE7JXY4xQZj734VeJ4D76qFpwj1R": {
+    "triggerevent_027KFTAUVB6ZL2WsTi3UA4skKt3rwsnBaJn": {
       "wf_unique_name": "definition_workflow_0274A6EEF4DU83T0niwWTnCAXjLyPqnemB4",
       "rule_unique_name": "ruleevent_024Y3GDGK2YKE2tnLQyP4znZ6H5TX5dAGFm",
-      "trig_unique_name": "triggerevent_0279EXPXE7JXY4xQZj734VeJ4D76qFpwj1R"
+      "trig_unique_name": "triggerevent_027KFTAUVB6ZL2WsTi3UA4skKt3rwsnBaJn"
     },
-    "triggerschedule_0274A6EG87LKW6NmgHagXt7D3m3ciFuHCnH": {
+    "triggerschedule_027KFTAUXTE8O3RZboazw1r47OL8f6TzcdO": {
       "wf_unique_name": "definition_workflow_0274A6EEF4DU83T0niwWTnCAXjLyPqnemB4",
       "rule_unique_name": "ruleschedule_02749XDBDI0E17R0FHjjDJcSTirUwC8RVTV",
-      "trig_unique_name": "triggerschedule_0274A6EG87LKW6NmgHagXt7D3m3ciFuHCnH"
+      "trig_unique_name": "triggerschedule_027KFTAUXTE8O3RZboazw1r47OL8f6TzcdO"
     }
   }
 }
