@@ -1,0 +1,714 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW",
+    "name": "SecureX Cloud Analytics / PAN",
+    "title": "SecureX Cloud Analytics / PAN",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "SecureX Cloud Analytics / PAN",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "$module_target;Secure Cloud Analytics;securex:ao:sca$",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_027KEL0IQCYLL2Ij8mfGdyYTHjpmc0g2eij",
+        "name": "Parallel Block",
+        "title": "Parallel Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": true,
+          "display_name": "Parallel Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_027KEL0J8U8HQ06d0t37AvGUYH9gMrnqpV7",
+            "name": "Parallel Branch",
+            "title": "SGA integration",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "SGA integration",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_027JKSE4ZOZ3M31qDebJMN9OyVRbwrrlSQs",
+                "name": "HTTP Request",
+                "title": "HTTP Request Alert ( Alert) ",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request Alert ( Alert) ",
+                  "method": "GET",
+                  "relative_url": "/alerts/alert/",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JKUF3IVNSD1waRzKdrRviJq5beWyNsx7",
+                "name": "HTTP Request",
+                "title": "HTTP Request ( Alert Notification ) ",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request ( Alert Notification ) ",
+                  "method": "GET",
+                  "relative_url": "/alerts/notifications/",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "$module_target;Secure Cloud Analytics;securex:ao:sca$"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JLHEP8OAKF1rdxbrqvA0i8dlFZZ6pj8w",
+                "name": "HTTP Request",
+                "title": "HTTP Request (Watch List ) ",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request (Watch List ) ",
+                  "method": "GET",
+                  "relative_url": "/watchlist/domains/",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JLJJ5KDLA81erj35XwfunITeTrYk93M3",
+                "name": "Find String",
+                "title": "Find String ( check valid respond from watchlist)",
+                "type": "core.find_string",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Find String ( check valid respond from watchlist)",
+                  "searched_string": "meta",
+                  "skip_execution": false,
+                  "source": "$activity.definition_activity_027JLHEP8OAKF1rdxbrqvA0i8dlFZZ6pj8w.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027KEJ9TIQWGC26CiMmuT041VHnixuBD61d",
+                "name": "Find String",
+                "title": "Find String ( Check responds from target meta data ",
+                "type": "core.find_string",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Find String ( Check responds from target meta data ",
+                  "searched_string": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.external_id$",
+                  "skip_execution": false,
+                  "source": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.api_name$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JLJM6GLE904Fy19GrZFrsYJc6T8VYux1",
+                "name": "Find String",
+                "title": "Find String",
+                "type": "core.find_string",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Find String",
+                  "searched_string": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.target_url$",
+                  "skip_execution": false,
+                  "source": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.module_type$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JO02P1YP8Y2WZg8nlIg32Q7j2ptlukqn",
+                "name": "HTTP Request",
+                "title": "HTTP Request POST (Watchlist IP ) ",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "body": "{\n  \"title\": \"IP-$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.output.start_time$t\",\n  \"identifier\": \"10.2.2.3\",\n  \"is_bidirectional\": true,\n  \"reason\": \"test\",\n  \"expires_on\": \"2023-08-31T20:07:01.000Z\",\n  \"list_on\": \"blacklist\",\n  \"category\": \"domain\"\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request POST (Watchlist IP ) ",
+                  "method": "POST",
+                  "relative_url": "/watchlist/domains/",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JO79UD1DGY3qLBJPeDyjAkUTUT8f1HfN",
+                "name": "JSONPath Query",
+                "title": "JSONPath Query",
+                "type": "corejava.jsonpathquery",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "JSONPath Query",
+                  "input_json": "$activity.definition_activity_027JO02P1YP8Y2WZg8nlIg32Q7j2ptlukqn.output.response_body$",
+                  "jsonpath_queries": [
+                    {
+                      "jsonpath_query": "$..id",
+                      "jsonpath_query_name": "DOMAIN_ID",
+                      "jsonpath_query_type": "string"
+                    }
+                  ],
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JOADL8QHFV03nt8xbh78SdA2Q80vQ0gg",
+                "name": "Sleep",
+                "title": "Sleep. 3 sec",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Sleep. 3 sec",
+                  "skip_execution": false,
+                  "sleep_interval": 3
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JO8LMG1LNO7FpP20bCX3mUKWoFAZJHKN",
+                "name": "HTTP Request",
+                "title": "HTTP Request PUT  (Watchlist IP ) ",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "body": "{\n  \"id\": $activity.definition_activity_027JO79UD1DGY3qLBJPeDyjAkUTUT8f1HfN.output.jsonpath_queries.DOMAIN_ID$,\n  \"title\": \"IP-2023-07-31T20:22:20.292103896Zt\",\n  \"identifier\": \"10.2.2.4\",\n  \"is_bidirectional\": true,\n  \"reason\": \"testfsfsadffdsfsadfas\",\n  \"expires_on\": \"2023-08-31T20:07:01.000Z\",\n  \"list_on\": \"blacklist\",\n  \"category\": \"domain\"\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request PUT  (Watchlist IP ) ",
+                  "method": "PUT",
+                  "relative_url": "/watchlist/domains/$activity.definition_activity_027JO79UD1DGY3qLBJPeDyjAkUTUT8f1HfN.output.jsonpath_queries.DOMAIN_ID$/",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JOB6LB79RN38FyD1zMg6HAgqjro9MZck",
+                "name": "Sleep",
+                "title": "Sleep. 3 sec",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Sleep. 3 sec",
+                  "skip_execution": false,
+                  "sleep_interval": 3
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JOBCHR8IH575F6jMtFU5UCSZyMjpLRky",
+                "name": "HTTP Request",
+                "title": "HTTP Request DELETE  (Watchlist IP ) ",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request DELETE  (Watchlist IP ) ",
+                  "method": "DELETE",
+                  "relative_url": "/watchlist/domains/$activity.definition_activity_027JO79UD1DGY3qLBJPeDyjAkUTUT8f1HfN.output.jsonpath_queries.DOMAIN_ID$",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JOBP9FVV3X2KDQM06wXkKMOGIaEQEoOx",
+                "name": "Sleep",
+                "title": "Sleep. 3 sec",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Sleep. 3 sec",
+                  "skip_execution": false,
+                  "sleep_interval": 3
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JOBSWOP4BG35YXI5JmmfJxfscyLNsbgw",
+                "name": "HTTP Request",
+                "title": "HTTP Request GET  (Watchlist IP )  - VALID",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request GET  (Watchlist IP )  - VALID",
+                  "method": "DELETE",
+                  "relative_url": "/watchlist/domains/$activity.definition_activity_027JO79UD1DGY3qLBJPeDyjAkUTUT8f1HfN.output.jsonpath_queries.DOMAIN_ID$/",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JOPEP6GWAN16MCzJwWFU9GDr1BcynghV",
+                "name": "HTTP Request",
+                "title": "HTTP Request DELETE  (Watchlist IP ) ",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request DELETE  (Watchlist IP ) ",
+                  "method": "DELETE",
+                  "relative_url": "/watchlist/domains/$activity.definition_activity_027JO79UD1DGY3qLBJPeDyjAkUTUT8f1HfN.output.jsonpath_queries.DOMAIN_ID$",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027JLKGWKAJU760jpYeuMjTV4FnW377DrJ2",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_027JLKGWW5PXN6PaA9DzbJYfTM8AMGQcwGN",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch PASS",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": {
+                                "left_operand": {
+                                  "left_operand": {
+                                    "left_operand": {
+                                      "left_operand": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.target_url$",
+                                      "operator": "ne",
+                                      "right_operand": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.module_type$"
+                                    },
+                                    "operator": "and",
+                                    "right_operand": {
+                                      "left_operand": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.external_id$",
+                                      "operator": "ne",
+                                      "right_operand": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.api_name$"
+                                    }
+                                  },
+                                  "operator": "and",
+                                  "right_operand": {
+                                    "left_operand": "$activity.definition_activity_027JO02P1YP8Y2WZg8nlIg32Q7j2ptlukqn.output.succeeded$",
+                                    "operator": "eq",
+                                    "right_operand": true
+                                  }
+                                },
+                                "operator": "and",
+                                "right_operand": {
+                                  "left_operand": "$activity.definition_activity_027JO8LMG1LNO7FpP20bCX3mUKWoFAZJHKN.output.succeeded$",
+                                  "operator": "eq",
+                                  "right_operand": true
+                                }
+                              },
+                              "operator": "and",
+                              "right_operand": {
+                                "left_operand": "$activity.definition_activity_027JOBCHR8IH575F6jMtFU5UCSZyMjpLRky.output.succeeded$",
+                                "operator": "eq",
+                                "right_operand": true
+                              }
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$activity.definition_activity_027JOPEP6GWAN16MCzJwWFU9GDr1BcynghV.output.succeeded$",
+                              "operator": "eq",
+                              "right_operand": false
+                            }
+                          },
+                          "operator": "and",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_027JKUF3IVNSD1waRzKdrRviJq5beWyNsx7.target.web-service endpoint.output.metadata.sx_module_info.target_url$",
+                            "operator": "ne",
+                            "right_operand": "1"
+                          }
+                        },
+                        "operator": "and",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_027JLJJ5KDLA81erj35XwfunITeTrYk93M3.output.has_match$",
+                          "operator": "eq",
+                          "right_operand": true
+                        }
+                      },
+                      "continue_on_failure": false,
+                      "display_name": "Condition Branch PASS",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_027JOVEJRM0H54LQtjcbMOXpXdc99GHWXu2",
+                        "name": "Completed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "continue_on_failure": false,
+                          "display_name": "Completed",
+                          "result_message": "PASS",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_027KEMDD5JM4R73Z5tbn7IvB4E9MMCqNsHw",
+            "name": "Parallel Branch",
+            "title": "PAN integration",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": true,
+              "display_name": "PAN integration",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_027KEMDD5OFWU6zoSIxtzTwowKQ311tRteu",
+                "name": "HTTP Request",
+                "title": "HTTP Request (get_versions) POST CALL ONLY",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request (get_versions) POST CALL ONLY",
+                  "method": "POST",
+                  "relative_url": "/distributions/get_versions",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "$module_target;Palo Alto Networks Cortex XDR;securex:ao:palo_alto_cortex_xdr$"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027KEMDD5NUSL2XlolDJRfnHJaZ9b4t0Myy",
+                "name": "HTTP Request",
+                "title": "HTTP Request (Get Incidents)  POST CALL ONLY",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "body": "{\"request_data\":{}}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request (Get Incidents)  POST CALL ONLY",
+                  "method": "POST",
+                  "relative_url": "/incidents/get_incidents",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "$module_target;Palo Alto Networks Cortex XDR;securex:ao:palo_alto_cortex_xdr$"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027KEMDD5KWK24s533wGxI2GEsp2yLPB17R",
+                "name": "HTTP Request",
+                "title": "HTTP Request (get_endpoint) POST CALL ONLY",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "allow_headers_redirect": false,
+                  "body": "{\n  \"request_data\": {\n    \"search_from\": 0,\n    \"search_to\": 10,\n    \"sort\": {\n      \"field\": \"endpoint_id\",\n      \"keyword\": \"asc\"\n    },\n    \"filters\": [\n      {\n        \"field\": \"scan_status\",\n        \"operator\": \"in\",\n        \"value\": [\n          \"none\",\n          \"pending\",\n          \"in_progress\",\n          \"pending_cancellation\",\n          \"aborted\",\n          \"success\",\n          \"canceled\",\n          \"error\"\n        ]\n      }\n    ]\n  }\n}",
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": true,
+                  "display_name": "HTTP Request (get_endpoint) POST CALL ONLY",
+                  "method": "POST",
+                  "relative_url": "/endpoints/get_endpoint",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "$module_target;Palo Alto Networks Cortex XDR;securex:ao:palo_alto_cortex_xdr$"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027KEMDD5PTDC3W9q5BT3dIFEQM3b566R1q",
+                "name": "Find String",
+                "title": "Find String ( check valid respond from get endpoints)",
+                "type": "core.find_string",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Find String ( check valid respond from get endpoints)",
+                  "searched_string": "total_count",
+                  "skip_execution": false,
+                  "source": "$activity.definition_activity_027KEMDD5KWK24s533wGxI2GEsp2yLPB17R.output.response_body$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027KEMDD5VFA971MlEtstJHgRnCw3I6M4nn",
+                "name": "Find String",
+                "title": "Find String ( Check responds from target meta data  1",
+                "type": "core.find_string",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Find String ( Check responds from target meta data  1",
+                  "searched_string": "$activity.definition_activity_027KEMDD5OFWU6zoSIxtzTwowKQ311tRteu.target.web-service endpoint.output.metadata.sx_module_info.external_id$",
+                  "skip_execution": false,
+                  "source": "$activity.definition_activity_027KEMDD5OFWU6zoSIxtzTwowKQ311tRteu.target.web-service endpoint.output.metadata.sx_module_info.api_name$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027KIXZPL5LTA7EuYYgGfugZ0sUTkKbnVmO",
+                "name": "Find String",
+                "title": "Find String ( Check responds from target meta data  2",
+                "type": "core.find_string",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Find String ( Check responds from target meta data  2",
+                  "searched_string": "$activity.definition_activity_027KEMDD5OFWU6zoSIxtzTwowKQ311tRteu.target.web-service endpoint.output.metadata.sx_module_info.target_url$",
+                  "skip_execution": false,
+                  "source": "$activity.definition_activity_027KEMDD5OFWU6zoSIxtzTwowKQ311tRteu.target.web-service endpoint.output.metadata.sx_module_info.module_type$"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_027KEMDD6ETWG2VsS7MfGUgwVbuRBHWmcfo",
+                "name": "Condition Block",
+                "title": "Condition Block",
+                "type": "logic.if_else",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Condition Block",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity",
+                "blocks": [
+                  {
+                    "unique_name": "definition_activity_027KEMDD6IU6924v29ZFNyS08vk3JFtzVsS",
+                    "name": "Condition Branch",
+                    "title": "Condition Branch PASS",
+                    "type": "logic.condition_block",
+                    "base_type": "activity",
+                    "properties": {
+                      "condition": {
+                        "left_operand": {
+                          "left_operand": {
+                            "left_operand": {
+                              "left_operand": "$activity.definition_activity_027KEMDD5NUSL2XlolDJRfnHJaZ9b4t0Myy.target.web-service endpoint.output.metadata.sx_module_info.target_url$",
+                              "operator": "nmw",
+                              "right_operand": "v31"
+                            },
+                            "operator": "and",
+                            "right_operand": {
+                              "left_operand": "$workflow.definition_workflow_027JKRAC5G8926P3M2Y455af1ltybEHZ5wW.target.web-service endpoint.output.metadata.sx_module_info.external_id$",
+                              "operator": "nmw",
+                              "right_operand": "sca121"
+                            }
+                          },
+                          "operator": "and",
+                          "right_operand": {
+                            "left_operand": "$activity.definition_activity_027KEMDD5NUSL2XlolDJRfnHJaZ9b4t0Myy.target.web-service endpoint.output.metadata.sx_module_info.api_name$",
+                            "operator": "nmw",
+                            "right_operand": "Cloud1212121"
+                          }
+                        },
+                        "operator": "and",
+                        "right_operand": {
+                          "left_operand": "$activity.definition_activity_027KEMDD5PTDC3W9q5BT3dIFEQM3b566R1q.output.has_match$",
+                          "operator": "eq",
+                          "right_operand": true
+                        }
+                      },
+                      "continue_on_failure": true,
+                      "display_name": "Condition Branch PASS",
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity",
+                    "actions": [
+                      {
+                        "unique_name": "definition_activity_027KEMDD6JTOJ3X1qAdooZsrh1ie02OGAeM",
+                        "name": "Completed",
+                        "title": "Completed",
+                        "type": "logic.completed",
+                        "base_type": "activity",
+                        "properties": {
+                          "completion_type": "succeeded",
+                          "continue_on_failure": false,
+                          "display_name": "Completed",
+                          "result_message": "PASS",
+                          "skip_execution": false
+                        },
+                        "object_type": "definition_activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "module_targets": [
+    {
+      "module_type": "Secure Cloud Analytics",
+      "external_id": "securex:ao:sca"
+    },
+    {
+      "module_type": "Palo Alto Networks Cortex XDR",
+      "external_id": "securex:ao:palo_alto_cortex_xdr"
+    }
+  ]
+}
