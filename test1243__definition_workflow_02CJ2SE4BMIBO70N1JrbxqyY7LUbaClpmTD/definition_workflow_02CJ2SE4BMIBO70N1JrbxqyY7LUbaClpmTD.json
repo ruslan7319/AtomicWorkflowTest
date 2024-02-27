@@ -1,0 +1,92 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_02CJ2SE4BMIBO70N1JrbxqyY7LUbaClpmTD",
+    "name": "MyWorkflow2",
+    "title": "MyWorkflow2",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "automation_rules": {
+        "type": [
+          "incident.rule_event"
+        ]
+      },
+      "delete_workflow_instance": false,
+      "display_name": "MyWorkflow2",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "no_target": true
+      },
+      "wf_metadata": {
+        "coa": {
+          "action": [
+            "allow"
+          ],
+          "intent": "incident_response",
+          "observable_types": [
+            "none"
+          ]
+        }
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_02CJ313W2G6FW28D6L36D7aeghEwxcHkJCa",
+        "name": "Sleep",
+        "title": "Sleep",
+        "type": "core.sleep",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Sleep",
+          "skip_execution": false,
+          "sleep_interval": 1
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ],
+    "template_type": "template_workflow.incident_response"
+  },
+  "rules": {
+    "ruleevent_028ABMPWF6JFM5jhSMxOp5TRIBqOJZBN6jv": {
+      "name": "ST-INC-Rule-Sept1",
+      "title": "ST-INC-Rule-Sept1",
+      "description": "test",
+      "type": "incident.rule_event",
+      "rule_type": "rule_event",
+      "base_type": "rule",
+      "object_type": "ruleevent",
+      "version": "1.0.0",
+      "properties": {
+        "description": "test",
+        "disabled": true,
+        "display_name": "ST-INC-Rule-Sept1",
+        "group_by": false,
+        "rule_type": "rule_event",
+        "title": "ST-INC-Rule-Sept1",
+        "workflows_config": [
+          {
+            "disabled": false,
+            "ref_id": "definition_workflow_02CJ2SE4BMIBO70N1JrbxqyY7LUbaClpmTD",
+            "status": {
+              "state": "disabled",
+              "error_msg": ""
+            }
+          }
+        ]
+      },
+      "disabled": true,
+      "unique_name": "ruleevent_028ABMPWF6JFM5jhSMxOp5TRIBqOJZBN6jv"
+    }
+  }
+}
